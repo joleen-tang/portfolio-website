@@ -15,6 +15,7 @@ ul{
 li{
 	font-family:"Verdana", sans-serif;
 	text-align: center;
+	font-weight:bold;
 	display:inline-block;
 	width:40%;
 	max-height:30em;
@@ -34,7 +35,7 @@ img{
 	margin:auto;
 	max-height:inherit;
 	max-width:30em;
-	padding-top:0.5em;
+	padding-bottom:0.5em;
 }
 th{
 	font-weight: bold;
