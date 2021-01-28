@@ -29,13 +29,13 @@ li{
 }
 .portrait{
 	height:100%;
+	padding-bottom:0.5em;
 }
 img{
 	display:block;
 	margin:auto;
 	max-height:inherit;
 	max-width:30em;
-	padding-bottom:0.5em;
 }
 th{
 	font-weight: bold;
