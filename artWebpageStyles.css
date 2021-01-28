@@ -1,0 +1,52 @@
+/*CSS Comment*/
+h1{
+	font-family:"Helvetica", sans-serif;
+	text-align:center;
+}
+body{
+	background-color:#ace8d4;
+}
+ul{
+	list-style-type: none;
+	margin-left:auto;
+	margin-right:auto;
+	width:90%;
+}
+li{
+	font-family:"Verdana", sans-serif;
+	text-align: center;
+	display:inline-block;
+	width:40%;
+	max-height:30em;
+	padding-left:4%;
+	padding-right:4%;
+	padding-bottom:5em;
+}
+.landscape{
+	width:100%;
+	padding:20% 0;
+}
+.portrait{
+	height:100%;
+}
+img{
+	display:block;
+	margin:auto;
+	max-height:inherit;
+	max-width:30em;
+	padding-top:0.5em;
+}
+th{
+	font-weight: bold;
+}
+table{
+	width:90%;
+	margin:auto;
+	border-collapse:collapse;
+}
+tr{
+	text-align: center;
+}
+th, td{
+	border:1px solid;
+}
