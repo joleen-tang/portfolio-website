@@ -1,53 +1,51 @@
 /*CSS Comment*/
+header{
+	background-color: #0e1e38;
+}
 h1{
 	font-family:"Helvetica", sans-serif;
 	text-align:center;
-}
-body{
-	background-color:#ace8d4;
+	color:#ffffff;
+	line-height: 200%;
 }
 ul{
 	list-style-type: none;
 	margin-left:auto;
-	margin-right:auto;
-	width:90%;
+	margin-right:auto;	
+	display:flex;
+	flex-direction:row;
+	flex-wrap:wrap;
+	align-items:center;
+	background-color:#ace8d4;
 }
 li{
-	font-family:"Verdana", sans-serif;
-	text-align: center;
-	font-weight:bold;
-	display:inline-block;
 	width:40%;
-	max-height:30em;
+	padding-top:1em;
 	padding-left:4%;
 	padding-right:4%;
-	padding-bottom:5em;
 }
-.landscape{
-	width:100%;
-	padding-top:10%;
-}
-.portrait{
-	height:100%;
-	padding-bottom:0.5em;
+figcaption{
+	font-family:"Verdana", sans-serif;
+	text-align: center;
+	font-style:italic;
+	line-height:200%;
+	vertical-align: bottom;
 }
 img{
 	display:block;
-	margin:auto;
-	max-height:inherit;
-	max-width:30em;
+	max-height:30em;
+	max-width:100%;
 }
-th{
-	font-weight: bold;
+.landscape{
+	width:100%;
 }
-table{
-	width:90%;
-	margin:auto;
-	border-collapse:collapse;
+.portrait{
+	margin-left:auto;
+	margin-right:auto;
 }
-tr{
-	text-align: center;
-}
-th, td{
-	border:1px solid;
+.artist-name{
+	text-align:center;
+	color:#ffffff;
+	font-family:"Helvetica", sans-serif;
+	padding-bottom:1em;
 }
