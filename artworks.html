@@ -4,20 +4,27 @@
 	<meta charset="UTF-8">
 	<meta name="author" content="Joleen Tang">
 	<title>Art Webpage</title>
-	<link rel="stylesheet" href="css/art-webpage-styles.css">
 	<script src="js/website-scripts.js"></script>
+	<script src="https://kit.fontawesome.com/b9820aecc1.js" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="css/art-webpage-styles.css">
 </head>
 <body>
-	<script>testAlert()</script>
 	<main>
 	<header>
 		<h1><em>Artworks</em></h1>
 		<div class="artist-name">Joleen Tang</div>
+		<i class="fas fa-bars nav-menu-icon" onclick="toggleNavDisplay('nav-menu')" tabindex="1"></i>
 	</header>
 	<div class="page-wrap">
-	<nav>
-		<a href="index.html">Home</a>
-		<a href="artworks.html" class="active">Artworks</a>
+	<nav id="nav-menu">
+		<a href="index.html">
+			<i class="fas fa-home"></i>
+			Home
+		</a>
+		<a href="artworks.html" class="active">
+			<i class="fas fa-palette"></i>
+			Artworks
+		</a>
 	</nav>
 	<section>
 		<ul>
@@ -90,4 +97,5 @@
 		<p>Placeholder text</p>
 	</footer>
 </body>
+<script>addEventListeners();</script>
 </html>
