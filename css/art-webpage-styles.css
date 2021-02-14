@@ -1,7 +1,7 @@
 body, main{
 	padding:0;
 	margin:0;
-	font-family:"Helvetica", sans-serif;
+	font-family:"Optima", sans-serif;
 }
 .page-wrap{
 	display:-webkit-box;
@@ -25,7 +25,6 @@ nav{
 	border-top:solid;
 	border-width: 1px;
 	border-color: #c79c00;
-	transition-duration: 0.4s;
 }
 nav a{
 	display:block;
@@ -37,7 +36,7 @@ nav a{
 	border-bottom:solid;
 	border-width: 1px;
 	border-color: #c79c00;
-	font-size:1.6vw;
+	font-size:1.3vw;
 }
 nav a:hover{
 	background-color:#000000;
@@ -47,14 +46,14 @@ nav a.active{
 }
 nav + section{
 	display:inline-block;
-	width:85%;
+	width:100%;
 	background-image:url("../images/background-decorations.png");
-	background-color:rgba(255, 175, 117, 0.3);
+	background-color:rgba(0, 0, 0, 0.6);
 	background-repeat: repeat-y;
 	background-blend-mode: darken;
 	background-size:150%;
 	margin:0;
-	transition-duration: 0.4s;
+	transition-duration: 1s;
 	min-height:100vh;
 }
 header, footer{
@@ -78,14 +77,24 @@ i{
 	left:3%;
 	font-size:4vw;
 }
+.collapsable-sub-heading{
+	text-align:left;
+	padding: 1% 2%;
+	line-height: 0.5;
+	position:relative;
+}
+.fa-caret-down{
+	position:absolute;
+	right:1%;
+	font-size: 3vw;
+}
 section p{
 	box-sizing: border-box;
-	min-height:100vh;
-	background-color:rgba(0, 0, 0, 0.8);
-	padding:4% 2%;
-	margin:1% 1%;
+	padding:3% 2%;
+	margin:0;
 	color:#ffffff;
 	line-height: 2;
+	font-size: 1.2vw;
 }
 footer p{
 	display:inline-block;
@@ -97,6 +106,10 @@ footer p:nth-child(even){
 }
 h1{
 	font-size:3vw;
+}
+h2{
+	font-size: 1.5vw;
+	display:inline-block;
 }
 .artist-name{
 	padding-bottom:10px;
@@ -132,7 +145,7 @@ li:hover{
 figcaption{
 	text-align: center;
 	font-weight: bold;
-	font-size:1.6vw;
+	font-size:1.3vw;
 	line-height:200%;
 	color:#ffffff;
 }

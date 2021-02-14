@@ -6,6 +6,7 @@
 	<title>Art Webpage</title>
 	<script src="js/website-scripts.js"></script>
 	<script src="https://kit.fontawesome.com/b9820aecc1.js" crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="css/art-webpage-styles.css">
 </head>
 <body>
@@ -27,68 +28,91 @@
 		</a>
 	</nav>
 	<section>
-		<ul>
-			<li>
-				<figure>
-				<img src="images/riverbank.jpg" alt="Watercolour painting of a riverbank" class="landscape">
-				<figcaption>Riverbank</figcaption>
-				</figure>
-			</li>
-			<li>
-				<figure>
-				<img src="images/bar.jpg" alt="Black and white pencil drawing of a bar" class="landscape">
-				<figcaption>Bar</figcaption>
-				</figure>
-			</li>
-			<li>
-				<figure>
-				<img src="images/assorted-still-life.jpg" alt="Black and white pencil drawing of a Chinese cabbage, pot, tomato, garlic, glass of water, and metal spoon" class="landscape">
-				<figcaption>Assorted Still Life</figcaption>
-				</figure>
-			</li>
-			<li>
-				<figure>
-				<img src="images/autumn-shiki.jpg" alt="Colour pencil drawing of a girl in an autumn-themed kimono" class="portrait">
-				<figcaption>Autumn Shiki</figcaption>
-				</figure>
-			</li>
-			<li>
-				<figure>
-				<img src="images/house.jpg" alt="Colour pencil drawing of the exterior of a house" class="landscape">
-				<figcaption>House</figcaption>
-				</figure>
-			</li>
-			<li>
-				<figure>
-				<img src="images/fish-and-pepper.jpg" alt="Black and white pencil drawing of a fish and pepper" class="portrait">
-				<figcaption>Fish and Pepper</figcaption>
-				</figure>
-			</li>
-			<li>
-				<figure>
-				<img src="images/sculpture-park.jpg" alt="Watercolour painting of a park with various sculptures" class="landscape">
-				<figcaption>Sculpture Park</figcaption>
-				</figure>
-			</li>
-			<li>
-				<figure>
-				<img src="images/city-corner.jpg" alt="Black and white pen drawing of a city corner" class="landscape">
-					<figcaption>City Corner</figcaption>
-				</figure>
-			</li>
-			<li>
-				<figure>
-				<img src="images/winged-rabbits.jpg" alt="Watercolour painting of numerous rabbits with butterfly wings" class="landscape">
-				<figcaption>Winged Rabbits</figcaption>
-				</figure>
-			</li>
-			<li>
-				<figure>
-				<img src="images/marianne.png" alt="Digital art of girl upper body" class="landscape">
-				<figcaption>Marianne</figcaption>
-				</figure>
-			</li>
-		</ul>
+		<p>This is a collection of artworks I have designed and completed, divided by subject matter</p>
+		<section>
+			<header class="collapsable-sub-heading">
+				<h2>Scenery</h2>
+				<i class="fas fa-caret-down"></i>
+			</header>
+			<ul class="scenery">
+				<li>
+					<figure>
+					<img src="images/riverbank.jpg" alt="Watercolour painting of a riverbank" class="landscape">
+					<figcaption>Riverbank</figcaption>
+					</figure>
+				</li>
+				<li>
+					<figure>
+					<img src="images/bar.jpg" alt="Black and white pencil drawing of a bar" class="landscape">
+					<figcaption>Bar</figcaption>
+					</figure>
+				</li>
+				<li>
+					<figure>
+					<img src="images/house.jpg" alt="Colour pencil drawing of the exterior of a house" class="landscape">
+					<figcaption>House</figcaption>
+					</figure>
+				</li>		
+				<li>
+					<figure>
+					<img src="images/sculpture-park.jpg" alt="Watercolour painting of a park with various sculptures" class="landscape">
+					<figcaption>Sculpture Park</figcaption>
+					</figure>
+				</li>	
+				<li>
+					<figure>
+					<img src="images/city-corner.jpg" alt="Black and white pen drawing of a city corner" class="landscape">
+						<figcaption>City Corner</figcaption>
+					</figure>
+				</li>
+			</ul>
+		</section>
+		<section>
+			<header class="collapsable-sub-heading">
+				<h2>Still Life</h2>
+				<i class="fas fa-caret-down"></i>
+			</header>
+			<ul class="still-life">
+				<li>
+					<figure>
+					<img src="images/assorted-still-life.jpg" alt="Black and white pencil drawing of a Chinese cabbage, pot, tomato, garlic, glass of water, and metal spoon" class="landscape">
+					<figcaption>Assorted Still Life</figcaption>
+					</figure>
+				</li>
+				<li>
+					<figure>
+					<img src="images/fish-and-pepper.jpg" alt="Black and white pencil drawing of a fish and pepper" class="portrait">
+					<figcaption>Fish and Pepper</figcaption>
+					</figure>
+				</li>
+			</ul>
+		</section>
+		<section>
+			<header class="collapsable-sub-heading">
+				<h2>People and Animals</h2>
+				<i class="fas fa-caret-down"></i>
+			</header>
+			<ul id="person">		
+				<li>
+					<figure>
+					<img src="images/autumn-shiki.jpg" alt="Colour pencil drawing of a girl in an autumn-themed kimono" class="portrait">
+					<figcaption>Autumn Shiki</figcaption>
+					</figure>
+				</li>
+				<li>
+					<figure>
+					<img src="images/winged-rabbits.jpg" alt="Watercolour painting of numerous rabbits with butterfly wings" class="landscape">
+					<figcaption>Winged Rabbits</figcaption>
+					</figure>
+				</li>
+				<li>
+					<figure>
+					<img src="images/marianne.png" alt="Digital art of girl upper body" class="landscape">
+					<figcaption>Marianne</figcaption>
+					</figure>
+				</li>
+			</ul>
+		</section>
 	</section>
 	</div>
 	</main>
@@ -97,5 +121,4 @@
 		<p>Placeholder text</p>
 	</footer>
 </body>
-<script>addEventListeners();</script>
 </html>
