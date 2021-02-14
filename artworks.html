@@ -4,9 +4,9 @@
 	<meta charset="UTF-8">
 	<meta name="author" content="Joleen Tang">
 	<title>Art Webpage</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="js/website-scripts.js"></script>
 	<script src="https://kit.fontawesome.com/b9820aecc1.js" crossorigin="anonymous"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="css/art-webpage-styles.css">
 </head>
 <body>
@@ -14,7 +14,7 @@
 	<header>
 		<h1><em>Artworks</em></h1>
 		<div class="artist-name">Joleen Tang</div>
-		<i class="fas fa-bars nav-menu-icon" onclick="toggleNavDisplay('nav-menu')" tabindex="1"></i>
+		<i class="fas fa-bars nav-menu-icon" onclick="toggleElementVisibility('nav-menu')" tabindex="1"></i>
 	</header>
 	<div class="page-wrap">
 	<nav id="nav-menu">
@@ -34,7 +34,7 @@
 				<h2>Scenery</h2>
 				<i class="fas fa-caret-down"></i>
 			</header>
-			<ul class="scenery">
+			<ul>
 				<li>
 					<figure>
 					<img src="images/riverbank.jpg" alt="Watercolour painting of a riverbank" class="landscape">
@@ -72,7 +72,7 @@
 				<h2>Still Life</h2>
 				<i class="fas fa-caret-down"></i>
 			</header>
-			<ul class="still-life">
+			<ul>
 				<li>
 					<figure>
 					<img src="images/assorted-still-life.jpg" alt="Black and white pencil drawing of a Chinese cabbage, pot, tomato, garlic, glass of water, and metal spoon" class="landscape">
@@ -92,7 +92,7 @@
 				<h2>People and Animals</h2>
 				<i class="fas fa-caret-down"></i>
 			</header>
-			<ul id="person">		
+			<ul>		
 				<li>
 					<figure>
 					<img src="images/autumn-shiki.jpg" alt="Colour pencil drawing of a girl in an autumn-themed kimono" class="portrait">

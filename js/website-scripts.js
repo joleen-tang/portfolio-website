@@ -1,11 +1,13 @@
 function addEventListeners(){
 }
 
-function toggleNavDisplay(elementId){
-	var element=document.getElementById(elementId);
-	$("#"+elementId).toggle(350, "linear");
+function toggleElementVisibility(elementId){
+	$("#"+elementId).toggle("slow");
 }
 
-function toggleElementVisibility(ElementId){
-
-}
+$(document).ready(function(){
+	$(".collapsable-sub-heading").click(function(){
+		$(this).siblings().slideToggle("slow");
+		$(this).children("i").toggleClass("fa-caret-left");
+	})
+});
