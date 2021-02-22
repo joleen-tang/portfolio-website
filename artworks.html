@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -11,10 +11,10 @@
 </head>
 <body>
 	<main>
-	<header>
-		<h1><em>Artworks</em></h1>
+	<header id="top">
+		<h1>Artworks</h1>
 		<div class="artist-name">Joleen Tang</div>
-		<i class="fas fa-bars nav-menu-icon" onclick="toggleElementVisibility('nav-menu')" tabindex="1"></i>
+		<button type="button" onclick="toggleElementVisibility('nav-menu')" tabindex="1"><i class="fas fa-bars nav-menu-icon"></i></button>
 	</header>
 	<div class="page-wrap">
 	<nav id="nav-menu">
@@ -22,15 +22,22 @@
 			<i class="fas fa-home"></i>
 			Home
 		</a>
-		<a href="artworks.html" class="active">
-			<i class="fas fa-palette"></i>
-			Artworks
-		</a>
+		<div>
+			<a href="artworks.html" class="active">
+				<i class="fas fa-palette"></i>
+				Artworks
+			</a>
+			<ul>
+				<li><a href="artworks.html#scenery">Scenery</a></li>
+				<li><a href="artworks.html#still-life">Still Life</a></li>
+				<li><a href="artworks.html#people-and-animals">People and Animals</a></li>
+			</ul>
+		</div>
 	</nav>
 	<section>
 		<p>This is a collection of artworks I have designed and completed, divided by subject matter</p>
 		<section>
-			<header class="collapsable-sub-heading">
+			<header class="collapsable-sub-heading" id="scenery">
 				<h2>Scenery</h2>
 				<i class="fas fa-caret-down"></i>
 			</header>
@@ -68,7 +75,7 @@
 			</ul>
 		</section>
 		<section>
-			<header class="collapsable-sub-heading">
+			<header class="collapsable-sub-heading" id="still-life">
 				<h2>Still Life</h2>
 				<i class="fas fa-caret-down"></i>
 			</header>
@@ -88,7 +95,7 @@
 			</ul>
 		</section>
 		<section>
-			<header class="collapsable-sub-heading">
+			<header class="collapsable-sub-heading" id="people-and-animals">
 				<h2>People and Animals</h2>
 				<i class="fas fa-caret-down"></i>
 			</header>
@@ -118,7 +125,7 @@
 	</main>
 	<footer>
 		<p>Email: joleen.tang888@gmail.com</p>
-		<p>Placeholder text</p>
+		<p><a href="#top">Back to top</a></p>
 	</footer>
 </body>
 </html>

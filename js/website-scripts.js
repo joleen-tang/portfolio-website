@@ -1,6 +1,3 @@
-function addEventListeners(){
-}
-
 function toggleElementVisibility(elementId){
 	$("#"+elementId).toggle("slow");
 }
