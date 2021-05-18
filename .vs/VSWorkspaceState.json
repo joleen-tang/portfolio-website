@@ -1,8 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\js"
+    "\\css",
+    "\\js",
+    "\\php"
   ],
-  "SelectedNode": "\\js\\website-scripts.js",
+  "SelectedNode": "\\php",
   "PreviewInSolutionExplorer": false
 }
