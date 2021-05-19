@@ -3,8 +3,8 @@ import csv
 import itertools
 
 
-def set_up_seed_table():
-    con = sqlite3.connect('greenhouse.db')
+def set_up_seed_table(db_file):
+    con = sqlite3.connect(db_file)
     cur = con.cursor()
 
     cur.execute(
@@ -29,8 +29,8 @@ def set_up_seed_table():
     con.close()
 
 
-def set_up_combo_tables():
-    con = sqlite3.connect('greenhouse.db')
+def set_up_combo_tables(db_file):
+    con = sqlite3.connect(db_file)
     cur = con.cursor()
 
     cur.execute('DROP TABLE IF EXISTS seed_combo')
@@ -97,9 +97,8 @@ def create_combos(seeds, seed_ids, cur):
                         f'SELECT {current_combo_id}, {s_id}, 1 WHERE (SELECT changes() = 0)')
 
 
-
-def delete_tables():
-    con = sqlite3.connect('greenhouse.db')
+def delete_tables(db_file):
+    con = sqlite3.connect(db_file)
     cur = con.cursor()
 
     cur.execute('DROP TABLE IF EXISTS seed_combo')
@@ -111,7 +110,7 @@ def delete_tables():
     con.close()
 
 
-delete_tables()
-set_up_seed_table()
-set_up_combo_tables()
+delete_tables('greenhouse.db')
+set_up_seed_table('greenhouse.db')
+set_up_combo_tables('greenhouse.db')
 populate_combo_tables()
