@@ -5,7 +5,7 @@ import sqlite3
 def add_cultivation():
     con = sqlite3.connect('greenhouse_lite.db')
     cur = con.cursor()
-    cur.execute("ALTER TABLE combo ADD COLUMN no_cultivation_score INTEGER")
+    cur.execute("ALTER TABLE combo ADD COLUMN zero_cultivation_score INTEGER")
     cur.execute("ALTER TABLE combo ADD COLUMN cultivation_score INTEGER")
     cur.execute("ALTER TABLE combo ADD COLUMN cultivation_level INTEGER")
 

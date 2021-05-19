@@ -92,9 +92,9 @@ def create_combos(seeds, seed_ids, cur):
         current_combo_id = get_max_combo_id(cur)
         for s_id in combination:
             cur.execute(f'UPDATE seed_combo '
-                        f'SET quantity = quantity + 1 WHERE comboID={current_combo_id} AND seedID={s_id}')
+                        f'SET quantity = quantity + 1 WHERE comboID={current_combo_id} AND seedID={s_id+1}')
             cur.execute('INSERT INTO seed_combo(comboID, seedID, quantity)'
-                        f'SELECT {current_combo_id}, {s_id}, 1 WHERE (SELECT changes() = 0)')
+                        f'SELECT {current_combo_id}, {s_id+1}, 1 WHERE (SELECT changes() = 0)')
 
 
 def delete_tables(db_file):
