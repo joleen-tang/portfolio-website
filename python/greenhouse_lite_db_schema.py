@@ -14,9 +14,3 @@ gh.delete_tables('greenhouse_lite.db')
 gh.set_up_seed_table('greenhouse_lite.db')
 gh.set_up_combo_tables('greenhouse_lite.db')
 add_cultivation()
-
-# con = sqlite3.connect('greenhouse_lite.db')
-# cur = con.cursor()
-# # cur.execute("SELECT * FROM sqlite_master WHERE tbl_name='combo'")
-# # for row in cur.fetchall():
-# #     print(row)
