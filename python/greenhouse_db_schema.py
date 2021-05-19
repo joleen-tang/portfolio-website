@@ -1,5 +1,6 @@
 import sqlite3
 import csv
+import itertools
 
 
 def set_up_seed_table():
@@ -54,25 +55,13 @@ def populate_combo_tables():
     cur = con.cursor()
 
     cur.execute('SELECT * FROM seed')
-    single_seeds = cur.fetchall()
+    seeds = cur.fetchall()
 
-    for row in single_seeds:
-        cur.execute('INSERT INTO combo(size, total_rank, total_rarity)'
-                    f'VALUES(1, {row[2]}, {row[3]})')
-        combo_id = get_max_combo_id(cur)
-        cur.execute('INSERT INTO seed_combo(comboID, seedID, quantity)'
-                    f'VALUES({combo_id}, {row[0]}, 1)')
+    temp = [n for n in range(21)]
 
-    for n in range(2, 6):
-        cur.execute(f'SELECT comboID, size, total_rank, total_rarity FROM combo WHERE size={n//2}')
-        combo1 = cur.fetchall()
-
-        if n % 2 == 0:
-            merge_combos(combo1, combo1, cur)
-        else:
-            cur.execute(f'SELECT comboID, size, total_rank, total_rarity FROM combo WHERE size={n - (n // 2)}')
-            combo2 = cur.fetchall()
-            merge_combos(combo1, combo2, cur)
+    for n in range(1, 6):
+        seed_ids = list(itertools.combinations_with_replacement(temp, n))
+        create_combos(seeds, seed_ids, cur)
 
     con.commit()
     cur.close()
@@ -85,33 +74,27 @@ def get_max_combo_id(cur):
     return current_combo_id[0]
 
 
-def merge_combos(combo1, combo2, cur):
-    # Each combo is tuples of (comboID, size, total_rank, total_rarity)
-    for n in range(len(combo1)):    # row in combo1:
-        row = combo1[n]
-        for m in range(n, len(combo2)):    # other_row in combo2:
-            other_row = combo2[m]
-            # Insert seed combination numbers
-            cur.execute('INSERT INTO combo(size, total_rank, total_rarity) '
-                        f'VALUES({row[1]+other_row[1]}, {row[2] + other_row[2]}, {row[3] + other_row[3]})')
-            # Get number of specific seeds in each component combo
-            cur.execute(f'SELECT seedID, quantity FROM seed_combo WHERE comboID={row[0]}')
-            seed_combo = cur.fetchall()
-            cur.execute(f'SELECT seedID, quantity FROM seed_combo WHERE comboID={other_row[0]}')
-            other_seed_combo = cur.fetchall()
-            # Get current comboID
-            current_combo_id = get_max_combo_id(cur)
-
-            # Seed is tuple of (seedID, quantity)
-            for seed in seed_combo:
-                cur.execute('INSERT INTO seed_combo(comboID, seedID, quantity)'
-                            f'VALUES({current_combo_id}, {seed[0]}, {seed[1]})')
-            for seed in other_seed_combo:
-                cur.execute(f'UPDATE seed_combo SET quantity = quantity + {seed[1]}'
-                            f'WHERE comboID={current_combo_id} AND seedID={seed[0]}')
-                cur.execute('INSERT INTO seed_combo(comboID, seedID, quantity)'
-                            f'SELECT {current_combo_id}, {seed[0]}, {seed[1]}'
-                            f'WHERE (SELECT changes() = 0)')
+def create_combos(seeds, seed_ids, cur):
+    # SeedIDs is a tuple of seed IDs,
+    # seeds is the tuple of tuples of all seeds pulled from seed table (seedID, name, rank, rarity, stat, buyable)
+    for combination in seed_ids:
+        size = 0
+        rank = 0
+        rarity = 0
+        for s_id in combination:
+            size += 1
+            rank += seeds[s_id][2]
+            rarity += seeds[s_id][3]
+        # Insert seed combination numbers
+        cur.execute('INSERT INTO combo(size, total_rank, total_rarity) '
+                    f'VALUES({size}, {rank}, {rarity})')
+        # Get current comboID
+        current_combo_id = get_max_combo_id(cur)
+        for s_id in combination:
+            cur.execute(f'UPDATE seed_combo '
+                        f'SET quantity = quantity + 1 WHERE comboID={current_combo_id} AND seedID={s_id}')
+            cur.execute('INSERT INTO seed_combo(comboID, seedID, quantity)'
+                        f'SELECT {current_combo_id}, {s_id}, 1 WHERE (SELECT changes() = 0)')
 
 
 
