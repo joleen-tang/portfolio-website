@@ -31,15 +31,17 @@ def calculate_cultivation(db_file):
     combos = cur.fetchall()
 
     for c in combos:
-        zero_update_query = 'UPDATE combo set zero_cultivation_score = ' + str(get_score(c, 1)) + ' WHERE comboID = '+str(c[0])
+        zero_update_query = 'UPDATE combo set zero_cultivation_score = ' + str(get_effective_score(get_score(c, 1))) + \
+                            ' WHERE comboID = '+str(c[0])
         cur.execute(zero_update_query)
         cultivation_level = 2
         while cultivation_level < 7:
             score = get_score(c, cultivation_level)
             if score % 10 == 2 or score % 10 == 1:
-                update_query = 'UPDATE combo SET cultivation_score = '+str(score) + ', cultivation_level = ' + str(cultivation_level)+' WHERE comboID = '+str(c[0])
+                update_query = 'UPDATE combo SET cultivation_score = '+str(get_effective_score(score)) + \
+                               ', cultivation_level = ' + str(cultivation_level)+' WHERE comboID = '+str(c[0])
                 cur.execute(update_query)
-                cultivation_level = 7
+                break
             cultivation_level += 1
     con.commit()
     cur.close()
@@ -54,13 +56,18 @@ def get_score(combo, cultivation_level):
     return a + b + c
 
 
+def get_effective_score(score):
+    return score // 10
+
+
 def populate_combo_stats():
     con = sqlite3.connect('greenhouse_lite.db')
     cur = con.cursor()
 
     cur.execute('SELECT seed_combo.comboID, seed.stat, seed_combo.quantity FROM seed_combo JOIN seed USING (seedID)')
     for row in cur.fetchall():
-        query_string = 'UPDATE combo SET '+row[1].lower()+' = '+row[1].lower()+' + '+str(row[2])+' WHERE comboID = '+str(row[0])
+        query_string = 'UPDATE combo SET '+row[1].lower()+' = '+row[1].lower()+' + '+str(row[2])\
+                       + ' WHERE comboID = '+str(row[0])
         cur.execute(query_string)
 
     con.commit()
