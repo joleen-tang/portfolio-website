@@ -1,5 +1,8 @@
-section{
-
+form{
+	background-color: #A8C3CE;
+	width:98%;
+	box-sizing: border-box;
+	margin: 2% 1%;
 }
 table{
 	width:98%;
@@ -8,7 +11,7 @@ table{
 	background-color:rgba(0, 0, 0, 0.5);
 	margin: 2% 1%;
 	border-collapse: collapse;
-	font-size: 0.8vw;
+	font-size: 1.1vw;
 }
 tr{
 	border: 0.5px solid #000000;
@@ -24,13 +27,57 @@ th{
 	padding: 0.5%;
 }
 td{
-	background-color: #A8C3CE;
+	background-color: rgba(168, 206, 204, 0.8);
 	padding: 0.5%;
 	padding-right:0;
 }
 th.seed-col{
-	width:10vw;
+	width:11vw;
 }
 th.qty-col{
 	width:3vw;
+}
+form{
+	width:98%;
+	margin: 2% 1%;
+	padding:2% 1%;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: stretch;
+	background-color: rgba(168, 206, 204, 0.8);
+}
+fieldset{
+	padding: 1% 2%;
+	margin:1% 2%;
+	min-width: 16%;
+	max-width: 100%;
+	font-size:1.1vw;
+	background-color: rgba(168, 195, 206, 0.5);
+	border-color: #193947;
+}
+legend{
+	font-size:1.2vw;
+	font-weight: bold;
+}
+form button{
+	display: inline-block;
+	padding:1% 2%;
+	margin: 4% 3% 1% 2%;
+	background-color: #0F232C;
+	color: #ffffff;
+}
+form label{
+	display: inline-block;
+	min-width: 33%;
+	margin-bottom: 1%;
+}
+input{
+	font-size: 1.1vw;
+}
+fieldset > button {
+	margin-top:1%;
+	margin-left:0;
 }

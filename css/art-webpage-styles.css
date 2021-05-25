@@ -37,7 +37,7 @@ nav a {
 	border-bottom: solid;
 	border-width: 1px;
 	border-color: #c79c00;
-	font-size: 0.9vw;
+	font-size: 1vw;
 	background-color: #0e1e38;
 }
 nav a:hover{
@@ -72,7 +72,7 @@ a > i {
 nav + section{
 	display:inline-block;
 	width:100%;
-	background-image:url("../images/background-decorations.png");
+	background-image:url("../images/pond.png");
 	background-color:rgba(0, 0, 0, 0.6);
 	background-repeat: repeat-y;
 	background-blend-mode: darken;
@@ -94,7 +94,7 @@ header, footer{
 header{
 	text-align:center;
 }
-button {
+header > button {
 	display: inline-block;
 	position: absolute;
 	top: 35%;
@@ -142,7 +142,7 @@ h1{
 	font-size:2vw;
 }
 h2{
-	font-size: 1vw;
+	font-size: 1.5vw;
 	display:inline-block;
 }
 .artist-name{
@@ -182,7 +182,7 @@ nav + section li:hover{
 figcaption{
 	text-align: center;
 	font-weight: bold;
-	font-size:0.9vw;
+	font-size:1vw;
 	line-height:200%;
 	color:#ffffff;
 }
