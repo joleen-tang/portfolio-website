@@ -2,11 +2,11 @@ section{
 
 }
 table{
-	width:92%;
+	width:98%;
 	font-family: "Optima", sans-serif;
 	box-sizing: border-box;
 	background-color:rgba(0, 0, 0, 0.5);
-	margin: 2% 4%;
+	margin: 2% 1%;
 	border-collapse: collapse;
 	font-size: 0.8vw;
 }
@@ -15,16 +15,18 @@ tr{
 }
 td, th{
 	margin:0;
-	padding: 0.5%;
-	padding-right:0;
 	border: 0.5px solid #000000;
 }
 th{
 	background-color: #0F232C;
 	color:#98AFB9;
+	text-align: center;
+	padding: 0.5%;
 }
 td{
 	background-color: #A8C3CE;
+	padding: 0.5%;
+	padding-right:0;
 }
 th.seed-col{
 	width:10vw;
