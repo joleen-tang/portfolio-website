@@ -58,8 +58,12 @@ def get_combo_info(max_cultivation_level, valid_combo_ids, priority, secondary_p
               f'seed.name, seed_combo.quantity ' \
               f'FROM (combo JOIN seed_combo USING(comboID)) JOIN seed USING(seedID) ' \
               'WHERE combo.comboID IN {} '.format(combo_ids)
-    s_query += f'ORDER BY score DESC, {priority} DESC, {secondary_priority} DESC, "cultivation level", ' \
-               f'size, combo.comboID, seed_combo.quantity, seed.name'
+    s_query += 'ORDER BY score DESC, '
+    if len(priority) > 0:
+        s_query += f'{priority} DESC, '
+    if len(secondary_priority) > 0:
+        s_query += f'{secondary_priority} DESC, '
+    s_query += '"cultivation level", size, combo.comboID, seed_combo.quantity DESC, seed.name'
 
     cursor.execute(s_query, (max_cultivation_level, max_cultivation_level))
     return cursor.fetchall()
@@ -131,4 +135,4 @@ def end_combo_row_html(seed_count, row_html):
     return row_html + '</tr>\n'
 
 
-print(get_filtered_combo_ids(9, 'speed', 'luck', None, ('resistance', 'charm'), 50))
+print(get_filtered_combo_ids(9, 'speed', '', None, ('resistance', 'charm'), 50))
