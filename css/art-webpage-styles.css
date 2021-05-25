@@ -19,7 +19,7 @@ nav {
 	box-sizing: border-box;
 	display: inline-block;
 	color: #ffffff;
-	width: 20vw;
+	width: 15vw;
 	margin: 0;
 	padding:0;
 	border-top: solid;
@@ -37,7 +37,7 @@ nav a {
 	border-bottom: solid;
 	border-width: 1px;
 	border-color: #c79c00;
-	font-size: 1.6vw;
+	font-size: 0.9vw;
 	background-color: #0e1e38;
 }
 nav a:hover{
@@ -125,11 +125,11 @@ section p{
 	margin:0;
 	color:#ffffff;
 	line-height: 2;
-	font-size: 1.4vw;
+	font-size: 0.9vw;
 }
 footer p{
 	display:inline-block;
-	font-size:1.1vw;
+	font-size:0.9vw;
 	width:49%;
 }
 footer p:nth-child(even){
@@ -139,15 +139,15 @@ footer a{
 	color:#ffffff;
 }
 h1{
-	font-size:4vw;
+	font-size:2vw;
 }
 h2{
-	font-size: 2vw;
+	font-size: 1vw;
 	display:inline-block;
 }
 .artist-name{
 	padding-bottom:10px;
-	font-size:1.2vw;
+	font-size:0.9vw;
 }
 nav + section ul{
 	display:flex;
@@ -182,7 +182,7 @@ nav + section li:hover{
 figcaption{
 	text-align: center;
 	font-weight: bold;
-	font-size:1.6vw;
+	font-size:0.9vw;
 	line-height:200%;
 	color:#ffffff;
 }

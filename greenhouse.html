@@ -5,27 +5,87 @@
 	<meta name="author" content="Joleen Tang">
 	<meta content-type="text/html">
 	<title>FE3H Greenhouse Calculator</title>
+	<script src="https://kit.fontawesome.com/b9820aecc1.js" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="css/greenhouse-calc-styles.css">
+	<link rel="stylesheet" href="css/art-webpage-styles.css">
 </head>
 <body>
 	<main>
+		<header id="top">
+			<h1>FE3H Greenhouse Calculator</h1>
+			<div class="artist-name">Joleen Tang</div>
+			<button type="button" onclick="toggleElementVisibility('nav-menu')" tabindex="1"><i class="fas fa-bars nav-menu-icon"></i></button>
+		</header>
+		<div class="page-wrap">
+		<nav id="nav-menu">
+			<a href="index.html" class="active">
+				<i class="fas fa-home"></i>
+				Home
+			</a>
+			<div>
+				<a href="artworks.html">
+					<i class="fas fa-palette"></i>
+					Artworks
+				</a>
+				<ul>
+					<li><a href="artworks.html#scenery">Scenery</a></li>
+					<li><a href="artworks.html#still-life">Still Life</a></li>
+					<li><a href="artworks.html#people-and-animals">People and Animals</a></li>
+				</ul>
+			</div>
+		</nav>
+		<section>
 		<table>
 			<tr>
 				<th>Score</th>
 				<th>Cultivation Level</th>
-				<th>Seed 1</th>
-				<th>Qty</th>
-				<th>Seed 2</th>
-				<th>Qty</th>
-				<th>Seed 3</th>
-				<th>Qty</th>
-				<th>Seed 4</th>
-				<th>Qty</th>
-				<th>Seed 5</th>
-				<th>Qty</th>
+				<th class="seed-col">Seed 1</th>
+				<th class="qty-col">Qty</th>
+				<th class="seed-col">Seed 2</th>
+				<th class="qty-col">Qty</th>
+				<th class="seed-col">Seed 3</th>
+				<th class="qty-col">Qty</th>
+				<th class="seed-col">Seed 4</th>
+				<th class="qty-col">Qty</th>
+				<th class="seed-col">Seed 5</th>
+				<th class="qty-col">Qty</th>
 			</tr>
 			<tr>
-				<td>82</td>
-				<td>1</td>
+				<td>9</td>
+				<td>5</td>
+				<td>Morfis-Plum Seeds</td><td>1</td>
+				<td>Nordsalat Seeds</td><td>1</td>
+				<td>Pale-Blue Flower Seeds</td><td>3</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>9</td>
+				<td>5</td>
+				<td>Nordsalat Seeds</td><td>3</td>
+				<td>Blue Flower Seeds</td><td>1</td>
+				<td>Pale-Blue Flower Seeds</td><td>1</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>9</td>
+				<td>5</td>
+				<td>Nordsalat Seeds</td><td>2</td>
+				<td>Purple Flower Seeds</td><td>1</td>
+				<td>Pale-Blue Flower Seeds</td><td>2</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>9</td>
+				<td>6</td>
 				<td>Nordsalat Seeds</td><td>4</td>
 				<td></td>
 				<td></td>
@@ -37,8 +97,61 @@
 				<td></td>
 			</tr>
 			<tr>
-				<td>82</td>
-				<td>1</td>
+				<td>9</td>
+				<td>6</td>
+				<td>Nordsalat Seeds</td><td>1</td>
+				<td>Eastern Fodlan Seeds</td><td>1</td>
+				<td>Pale-Blue Flower Seeds</td><td>3</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>9</td>
+				<td>5</td>
+				<td>Nordsalat Seeds</td><td>3</td>
+				<td>Boa-Fruit Seeds</td><td>1</td>
+				<td>Mixed Fruit Seeds</td><td>1</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>9</td>
+				<td>4</td>
+				<td>Nordsalat Seeds</td><td>2</td>
+				<td>Boa-Fruit Seeds</td><td>1</td>
+				<td>Angelica Seeds</td><td>1</td>
+				<td>Pale-Blue Flower Seeds</td><td>1</td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>9</td>
+				<td>4</td>
+				<td>Nordsalat Seeds</td><td>2</td>
+				<td>Boa-Fruit Seeds</td><td>1</td>
+				<td>Green Flower Seeds</td><td>1</td>
+				<td>Pale-Blue Flower Seeds</td><td>1</td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>9</td>
+				<td>5</td>
+				<td>Boa-Fruit Seeds</td><td>1</td>
+				<td>Blue Flower Seeds</td><td>1</td>
+				<td>Pale-Blue Flower Seeds</td><td>3</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>9</td>
+				<td>6</td>
 				<td>Nordsalat Seeds</td><td>1</td>
 				<td>Boa-Fruit Seeds</td><td>1</td>
 				<td>Pale-Blue Flower Seeds</td><td>2</td>
@@ -48,229 +161,448 @@
 				<td></td>
 			</tr>
 			<tr>
-				<td>82</td>
-				<td>2</td>
-				<td>Mixed Herb Seeds</td><td>1</td>
+				<td>9</td>
+				<td>6</td>
+				<td>Nordsalat Seeds</td><td>3</td>
+				<td>Mixed Fruit Seeds</td><td>1</td>
+				<td>Yellow Flower Seeds</td><td>1</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>9</td>
+				<td>4</td>
+				<td>Nordsalat Seeds</td><td>2</td>
+				<td>Angelica Seeds</td><td>1</td>
+				<td>Yellow Flower Seeds</td><td>1</td>
+				<td>Pale-Blue Flower Seeds</td><td>1</td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>9</td>
+				<td>5</td>
+				<td>Western Fodlan Seeds</td><td>1</td>
+				<td>Morfis-Plum Seeds</td><td>1</td>
 				<td>Nordsalat Seeds</td><td>3</td>
 				<td></td>
 				<td></td>
 				<td></td>
 				<td></td>
-				<td></td>
-				<td></td>
 			</tr>
 			<tr>
-				<td>82</td>
-				<td>2</td>
-				<td>Northern Fodlan Seeds</td><td>1</td>
-				<td>Nordsalat Seeds</td><td>2</td>
-				<td>Pale-Blue Flower Seeds</td><td>1</td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td>82</td>
-				<td>2</td>
-				<td>Nordsalat Seeds</td><td>1</td>
-				<td>Yellow Flower Seeds</td><td>1</td>
-				<td>Pale-Blue Flower Seeds</td><td>2</td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td>82</td>
-				<td>3</td>
-				<td>Nordsalat Seeds</td><td>2</td>
-				<td>Eastern Fodlan Seeds</td><td>1</td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td>82</td>
-				<td>3</td>
-				<td>Angelica Seeds</td><td>1</td>
-				<td>Pale-Blue Flower Seeds</td><td>2</td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td>82</td>
-				<td>3</td>
-				<td>Western Fodlan Seeds</td><td>1</td>
-				<td>Pale-Blue Flower Seeds</td><td>3</td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td>82</td>
-				<td>3</td>
-				<td>Vegetable Seeds</td><td>1</td>
-				<td>Pale-Blue Flower Seeds</td><td>3</td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td>82</td>
-				<td>4</td>
-				<td>Nordsalat Seeds</td><td>1</td>
-				<td>Mixed Fruit Seeds</td><td>1</td>
-				<td>Pale-Blue Flower Seeds</td><td>1</td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td>82</td>
-				<td>4</td>
-				<td>Angelica Seeds</td><td>1</td>
-				<td>Pale-Blue Flower Seeds</td><td>3</td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td>82</td>
+				<td>9</td>
 				<td>5</td>
-				<td>Nordsalat Seeds</td><td>1</td>
-				<td>Albinean Seeds</td><td>1</td>
-				<td>Pale-Blue Flower Seeds</td><td>2</td>
-				<td></td>
-				<td></td>
+				<td>Morfis-Plum Seeds</td><td>1</td>
+				<td>Morfis Seeds</td><td>1</td>
+				<td>Nordsalat Seeds</td><td>2</td>
+				<td>Pale-Blue Flower Seeds</td><td>1</td>
 				<td></td>
 				<td></td>
 			</tr>
 			<tr>
-				<td>82</td>
+				<td>9</td>
 				<td>5</td>
-				<td>Green Flower Seeds</td><td>1</td>
-				<td>Pale-Blue Flower Seeds</td><td>3</td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td>81</td>
-				<td>1</td>
-				<td>Nordsalat Seeds</td><td>2</td>
-				<td>White Flower Seeds</td><td>1</td>
-				<td>Pale-Blue Flower Seeds</td><td>1</td>
+				<td>Southern Fodlan Seeds</td><td>1</td>
+				<td>Nordsalat Seeds</td><td>3</td>
+				<td>Blue Flower Seeds</td><td>1</td>
 				<td></td>
 				<td></td>
 				<td></td>
 				<td></td>
 			</tr>
 			<tr>
-				<td>81</td>
-				<td>2</td>
-				<td>Morfis-Plum Seeds</td><td>1</td>
-				<td>Nordsalat Seeds</td><td>2</td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td>81</td>
-				<td>3</td>
-				<td>Nordsalat Seeds</td><td>1</td>
-				<td>Albinean Seeds</td><td>1</td>
-				<td>Pale-Blue Flower Seeds</td><td>1</td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td>81</td>
-				<td>3</td>
-				<td>Green Flower Seeds</td><td>1</td>
-				<td>Pale-Blue Flower Seeds</td><td>2</td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td>81</td>
-				<td>3</td>
-				<td>Morfis-Plum Seeds</td><td>1</td>
-				<td>Nordsalat Seeds</td><td>2</td>
-				<td>Pale-Blue Flower Seeds</td><td>1</td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td>81</td>
-				<td>3</td>
+				<td>9</td>
+				<td>5</td>
+				<td>Morfis Seeds</td><td>1</td>
 				<td>Nordsalat Seeds</td><td>3</td>
 				<td>Purple Flower Seeds</td><td>1</td>
 				<td></td>
 				<td></td>
 				<td></td>
 				<td></td>
-				<td></td>
-				<td></td>
 			</tr>
 			<tr>
-				<td>81</td>
-				<td>4</td>
+				<td>9</td>
+				<td>5</td>
 				<td>Nordsalat Seeds</td><td>2</td>
-				<td>Boa-Fruit Seeds</td><td>1</td>
+				<td>Yellow Flower Seeds</td><td>1</td>
+				<td>Green Flower Seeds</td><td>1</td>
+				<td>Pale-Blue Flower Seeds</td><td>1</td>
 				<td></td>
 				<td></td>
+			</tr>
+			<tr>
+				<td>9</td>
+				<td>6</td>
+				<td>Mixed Herb Seeds</td><td>1</td>
+				<td>Morfis-Plum Seeds</td><td>1</td>
+				<td>Pale-Blue Flower Seeds</td><td>3</td>
 				<td></td>
 				<td></td>
 				<td></td>
 				<td></td>
 			</tr>
 			<tr>
-				<td>81</td>
-				<td>4</td>
+				<td>9</td>
+				<td>6</td>
+				<td>Mixed Herb Seeds</td><td>1</td>
+				<td>Nordsalat Seeds</td><td>2</td>
+				<td>Blue Flower Seeds</td><td>1</td>
+				<td>Pale-Blue Flower Seeds</td><td>1</td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>9</td>
+				<td>6</td>
+				<td>Mixed Herb Seeds</td><td>1</td>
+				<td>Nordsalat Seeds</td><td>1</td>
+				<td>Purple Flower Seeds</td><td>1</td>
+				<td>Pale-Blue Flower Seeds</td><td>2</td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>9</td>
+				<td>6</td>
+				<td>Western Fodlan Seeds</td><td>1</td>
+				<td>Nordsalat Seeds</td><td>3</td>
+				<td>Eastern Fodlan Seeds</td><td>1</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>9</td>
+				<td>6</td>
+				<td>Western Fodlan Seeds</td><td>1</td>
+				<td>Nordsalat Seeds</td><td>1</td>
+				<td>Angelica Seeds</td><td>1</td>
+				<td>Pale-Blue Flower Seeds</td><td>2</td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>9</td>
+				<td>6</td>
+				<td>Western Fodlan Seeds</td><td>1</td>
+				<td>Nordsalat Seeds</td><td>1</td>
+				<td>Green Flower Seeds</td><td>1</td>
+				<td>Pale-Blue Flower Seeds</td><td>2</td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>9</td>
+				<td>6</td>
+				<td>Root Vegetable Seeds</td><td>1</td>
+				<td>Morfis-Plum Seeds</td><td>1</td>
+				<td>Nordsalat Seeds</td><td>1</td>
+				<td>Pale-Blue Flower Seeds</td><td>2</td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>9</td>
+				<td>6</td>
+				<td>Root Vegetable Seeds</td><td>1</td>
+				<td>Nordsalat Seeds</td><td>3</td>
+				<td>Blue Flower Seeds</td><td>1</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>9</td>
+				<td>6</td>
+				<td>Root Vegetable Seeds</td><td>1</td>
+				<td>Nordsalat Seeds</td><td>2</td>
+				<td>Purple Flower Seeds</td><td>1</td>
+				<td>Pale-Blue Flower Seeds</td><td>1</td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>9</td>
+				<td>6</td>
+				<td>Morfis-Plum Seeds</td><td>1</td>
+				<td>Southern Fodlan Seeds</td><td>1</td>
+				<td>Nordsalat Seeds</td><td>1</td>
+				<td>Pale-Blue Flower Seeds</td><td>2</td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>9</td>
+				<td>6</td>
+				<td>Morfis-Plum Seeds</td><td>1</td>
+				<td>Nordsalat Seeds</td><td>3</td>
+				<td>Angelica Seeds</td><td>1</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>9</td>
+				<td>6</td>
+				<td>Southern Fodlan Seeds</td><td>1</td>
+				<td>Nordsalat Seeds</td><td>2</td>
+				<td>Purple Flower Seeds</td><td>1</td>
+				<td>Pale-Blue Flower Seeds</td><td>1</td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>9</td>
+				<td>6</td>
+				<td>Southern Fodlan Seeds</td><td>1</td>
+				<td>Nordsalat Seeds</td><td>1</td>
+				<td>Eastern Fodlan Seeds</td><td>1</td>
+				<td>Pale-Blue Flower Seeds</td><td>2</td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>9</td>
+				<td>6</td>
+				<td>Morfis Seeds</td><td>1</td>
 				<td>Nordsalat Seeds</td><td>2</td>
 				<td>Eastern Fodlan Seeds</td><td>1</td>
+				<td>Pale-Blue Flower Seeds</td><td>1</td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>9</td>
+				<td>6</td>
+				<td>Morfis Seeds</td><td>1</td>
+				<td>Angelica Seeds</td><td>1</td>
+				<td>Pale-Blue Flower Seeds</td><td>3</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>9</td>
+				<td>6</td>
+				<td>Morfis Seeds</td><td>1</td>
+				<td>Green Flower Seeds</td><td>1</td>
+				<td>Pale-Blue Flower Seeds</td><td>3</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>9</td>
+				<td>6</td>
+				<td>Nordsalat Seeds</td><td>1</td>
+				<td>Angelica Seeds</td><td>2</td>
+				<td>Pale-Blue Flower Seeds</td><td>2</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>9</td>
+				<td>6</td>
+				<td>Blue Flower Seeds</td><td>1</td>
+				<td>Yellow Flower Seeds</td><td>1</td>
+				<td>Pale-Blue Flower Seeds</td><td>3</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>8</td>
+				<td>2</td>
+				<td>Nordsalat Seeds</td><td>4</td>
+				<td>Pale-Blue Flower Seeds</td><td>1</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>8</td>
+				<td>2</td>
+				<td>Nordsalat Seeds</td><td>1</td>
+				<td>Boa-Fruit Seeds</td><td>1</td>
+				<td>Pale-Blue Flower Seeds</td><td>3</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>8</td>
+				<td>2</td>
+				<td>Mixed Fruit Seeds</td><td>1</td>
+				<td>Pale-Blue Flower Seeds</td><td>4</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>8</td>
+				<td>6</td>
+				<td>Nordsalat Seeds</td><td>1</td>
+				<td>Mixed Fruit Seeds</td><td>1</td>
+				<td>Pale-Blue Flower Seeds</td><td>3</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>8</td>
+				<td>2</td>
+				<td>Southern Fodlan Seeds</td><td>1</td>
+				<td>Nordsalat Seeds</td><td>4</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>8</td>
+				<td>3</td>
+				<td>Mixed Herb Seeds</td><td>1</td>
+				<td>Nordsalat Seeds</td><td>3</td>
 				<td>Pale-Blue Flower Seeds</td><td>1</td>
 				<td></td>
 				<td></td>
 				<td></td>
 				<td></td>
 			</tr>
+			<tr>
+				<td>8</td>
+				<td>3</td>
+				<td>Root Vegetable Seeds</td><td>1</td>
+				<td>Nordsalat Seeds</td><td>4</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>8</td>
+				<td>3</td>
+				<td>Nordsalat Seeds</td><td>1</td>
+				<td>Yellow Flower Seeds</td><td>1</td>
+				<td>Pale-Blue Flower Seeds</td><td>3</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>8</td>
+				<td>4</td>
+				<td>Western Fodlan Seeds</td><td>1</td>
+				<td>Pale-Blue Flower Seeds</td><td>4</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>8</td>
+				<td>4</td>
+				<td>Nordsalat Seeds</td><td>4</td>
+				<td>Blue Flower Seeds</td><td>1</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>8</td>
+				<td>5</td>
+				<td>Morfis-Plum Seeds</td><td>1</td>
+				<td>Nordsalat Seeds</td><td>2</td>
+				<td>Pale-Blue Flower Seeds</td><td>2</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>8</td>
+				<td>5</td>
+				<td>Nordsalat Seeds</td><td>3</td>
+				<td>Purple Flower Seeds</td><td>1</td>
+				<td>Pale-Blue Flower Seeds</td><td>1</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>8</td>
+				<td>5</td>
+				<td>Angelica Seeds</td><td>1</td>
+				<td>Pale-Blue Flower Seeds</td><td>4</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>8</td>
+				<td>6</td>
+				<td>Nordsalat Seeds</td><td>2</td>
+				<td>Eastern Fodlan Seeds</td><td>1</td>
+				<td>Pale-Blue Flower Seeds</td><td>2</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>8</td>
+				<td>6</td>
+				<td>Green Flower Seeds</td><td>1</td>
+				<td>Pale-Blue Flower Seeds</td><td>4</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
 		</table>
+		</section>
+		</div>
+		
 	</main>
 	<footer>
-		
+		<p>Email: joleen.tang888@gmail.com</p>
+		<p><a href="#top">Back to top</a></p>
 	</footer>
 </body>
 </html>
