@@ -7,10 +7,10 @@
 	<title>FE3H Greenhouse Calculator</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="js/website-scripts.js"></script>
+	<script src="js/greenhouse-scripts.js"></script>
 	<script src="https://kit.fontawesome.com/b9820aecc1.js" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="css/art-webpage-styles.css">
 	<link rel="stylesheet" href="css/greenhouse-calc-styles.css">
-
 </head>
 <body>
 	<main>
@@ -43,7 +43,8 @@
 		</nav>
 		<section>
 			<form>
-				<p>Primary stat priority:</p><br>
+				<fieldset>
+				<legend>Primary stat priority:</legend>
 				<label for="hp">
 					<input type="radio" name="priority" id="hp" value="hp"> HP
 				</label><br>
@@ -74,8 +75,10 @@
 				<label for="None">
 					<input type="radio" name="priority" id="None" value="" checked> None
 				</label><br>
+				</fieldset>
 
-				<p>Secondary stat priority: </p><br>
+				<fieldset>
+				<legend>Secondary stat priority: </legend>
 				<label for="hp2">
 					<input type="radio" name="secondary_priority" id="hp2" value="hp"> HP
 				</label><br>
@@ -106,37 +109,41 @@
 				<label for="None2">
 					<input type="radio" name="secondary_priority" id="None2" value="" checked> None
 				</label><br>
+				</fieldset>
 
-				<p>Unwanted Stats: </p>
-					<label for="hp3">
-						<input type="checkbox" name="secondary_priority" id="hp3" value="hp"> HP
-					</label><br>
-					<label for="strength3">
-						<input type="checkbox" name="secondary_priority" id="strength3" value="strength"> Strength
-					</label><br>
-					<label for="magic3">
-						<input type="checkbox" name="secondary_priority" id="magic3" value="magic"> Magic
-					</label><br>
-					<label for="dexterity3">
-						<input type="checkbox" name="secondary_priority" id="dexterity3" value="dexterity"> Dexterity
-					</label><br>
-					<label for="speed3">
-						<input type="checkbox" name="secondary_priority" id="speed3" value="speed"> Speed
-					</label><br>
-					<label for="luck3">
-						<input type="checkbox" name="secondary_priority" id="luck3" value="luck"> Luck
-					</label><br>
-					<label for="defence3">
-						<input type="checkbox" name="secondary_priority" id="defence3" value="defence"> Defence
-					</label><br>
-					<label for="resistance3">
-						<input type="checkbox" name="secondary_priority" id="resistance3" value="resistance"> Resistance
-					</label><br>
-					<label for="charm3">
-						<input type="checkbox" name="secondary_priority" id="charm3" value="charm"> Charm
-					</label><br>
+				<fieldset>
+				<legend>Unwanted Stats: </legend>
+				<label for="hp3">
+					<input type="checkbox" name="secondary_priority" id="hp3" value="hp"> HP
+				</label><br>
+				<label for="strength3">
+					<input type="checkbox" name="secondary_priority" id="strength3" value="strength"> Strength
+				</label><br>
+				<label for="magic3">
+					<input type="checkbox" name="secondary_priority" id="magic3" value="magic"> Magic
+				</label><br>
+				<label for="dexterity3">
+					<input type="checkbox" name="secondary_priority" id="dexterity3" value="dexterity"> Dexterity
+				</label><br>
+				<label for="speed3">
+					<input type="checkbox" name="secondary_priority" id="speed3" value="speed"> Speed
+				</label><br>
+				<label for="luck3">
+					<input type="checkbox" name="secondary_priority" id="luck3" value="luck"> Luck
+				</label><br>
+				<label for="defence3">
+					<input type="checkbox" name="secondary_priority" id="defence3" value="defence"> Defence
+				</label><br>
+				<label for="resistance3">
+					<input type="checkbox" name="secondary_priority" id="resistance3" value="resistance"> Resistance
+				</label><br>
+				<label for="charm3">
+					<input type="checkbox" name="secondary_priority" id="charm3" value="charm"> Charm
+				</label><br>
+				</fieldset>
 
-				<p>Professor Level: </p><br>
+				<fieldset>
+				<legend>Professor Level: </legend>
 				<label for="e">
 					<input type="radio" name="professor_level" id="e" value="1" checked> E
 				</label><br>
@@ -167,74 +174,84 @@
 				<label for="a+">
 					<input type="radio" name="professor_level" id="a+" value="10"> A+
 				</label><br>
+				</fieldset>
 
-				<p>Available Seeds: </p>
-				<label for="mhs">
-					<input type="checkbox" name="usable" id="mhs" value="Mixed Herb Seeds"> Mixed Herb Seeds
-				</label>
-				<label for="wfs">
-					<input type="checkbox" name="usable" id="wfs" value="Western Fodlan Seeds"> Western Fodlan Seeds
-				</label>
-				<label for="rvs">
-					<input type="checkbox" name="usable" id="rvs" value="Root Vegetable Seeds"> Root Vegetable Seeds
-				</label>
-				<label for="vs">
-					<input type="checkbox" name="usable" id="vs" value="Vegetable Seeds"> Vegetable Seeds
-				</label>
-				<label for="nfs">
-					<input type="checkbox" name="usable" id="nfs" value="Northern Fodlan Seeds"> Northern Fodlan Seeds
-				</label>
-				<label for="mps">
-					<input type="checkbox" name="usable" id="mps" value="Morfis-Plum Seeds"> Morfis-Plum Seeds
-				</label>
-				<label for="sfs">
-					<input type="checkbox" name="usable" id="sfs" value="Southern Fodlan Seeds"> Southern Fodlan Seeds
-				</label>
-				<label for="ms">
-					<input type="checkbox" name="usable" id="ms" value="Morfis Seeds"> Morfis Seeds
-				</label>
-				<label for="ns">
-					<input type="checkbox" name="usable" id="ns" value="Nordsalat Seeds"> Nordsalat Seeds
-				</label>
-				<label for="bfs">
-					<input type="checkbox" name="usable" id="bfs" value="Boa-Fruit Seeds"> Boa-Fruit Seeds
-				</label>
+				<fieldset class="checkbox">
+				<legend>Available Seeds: </legend>
 				<label for="as">
 					<input type="checkbox" name="usable" id="as" value="Albinean Seeds"> Albinean Seeds
-				</label>
-				<label for="efs">
-					<input type="checkbox" name="usable" id="efs" value="Eastern Fodlan Seeds"> Eastern Fodlan Seeds
 				</label>
 				<label for="ans">
 					<input type="checkbox" name="usable" id="ans" value="Angelica Seeds"> Angelica Seeds
 				</label>
-				<label for="mfs">
-					<input type="checkbox" name="usable" id="mfs" value="Mixed Fruit Seeds"> Mixed Fruit Seeds
-				</label>
-				<label for="rfs">
-					<input type="checkbox" name="usable" id="rfs" value="Red Flower Seeds"> Red Flower Seeds
-				</label>
-				<label for="whfs">
-					<input type="checkbox" name="usable" id="whfs" value="White Flower Seeds"> White Flower Seeds
-				</label>
 				<label for="blfs">
 					<input type="checkbox" name="usable" id="blfs" value="Blue Flower Seeds"> Blue Flower Seeds
 				</label>
-				<label for="pfs">
-					<input type="checkbox" name="usable" id="pfs" value="Purple Flower Seeds"> Purple Flower Seeds
+				<label for="bfs">
+					<input type="checkbox" name="usable" id="bfs" value="Boa-Fruit Seeds"> Boa-Fruit Seeds
 				</label>
-				<label for="yfs">
-					<input type="checkbox" name="usable" id="yfs" value="Yellow Flower Seeds"> Yellow Flower Seeds
+				<label for="efs">
+					<input type="checkbox" name="usable" id="efs" value="Eastern Fodlan Seeds"> Eastern Fodlan Seeds
 				</label>
 				<label for="gfs">
 					<input type="checkbox" name="usable" id="gfs" value="Green Flower Seeds"> Green Flower Seeds
 				</label>
-				<label for="pbfs">
-					<input type="checkbox" name="usable" id="pbfs" value="Pale-BLue Flower Seeds"> Pale-BLue Flower Seeds
+				<label for="mfs">
+					<input type="checkbox" name="usable" id="mfs" value="Mixed Fruit Seeds"> Mixed Fruit Seeds
 				</label>
+				<label for="mhs">
+					<input type="checkbox" name="usable" id="mhs" value="Mixed Herb Seeds"> Mixed Herb Seeds
+				</label>
+				<label for="ms">
+					<input type="checkbox" name="usable" id="ms" value="Morfis Seeds"> Morfis Seeds
+				</label>
+				<label for="mps">
+					<input type="checkbox" name="usable" id="mps" value="Morfis-Plum Seeds"> Morfis-Plum Seeds
+				</label>
+				<label for="ns">
+					<input type="checkbox" name="usable" id="ns" value="Nordsalat Seeds"> Nordsalat Seeds
+				</label>
+				<label for="nfs">
+					<input type="checkbox" name="usable" id="nfs" value="Northern Fodlan Seeds"> Northern Fodlan Seeds
+				</label>
+				<label for="pbfs">
+					<input type="checkbox" name="usable" id="pbfs" value="Pale-Blue Flower Seeds"> Pale-Blue Flower Seeds
+				</label>
+				<label for="pfs">
+					<input type="checkbox" name="usable" id="pfs" value="Purple Flower Seeds"> Purple Flower Seeds
+				</label>
+				<label for="rfs">
+					<input type="checkbox" name="usable" id="rfs" value="Red Flower Seeds"> Red Flower Seeds
+				</label>
+				<label for="rvs">
+					<input type="checkbox" name="usable" id="rvs" value="Root Vegetable Seeds"> Root Vegetable Seeds
+				</label>
+				<label for="sfs">
+					<input type="checkbox" name="usable" id="sfs" value="Southern Fodlan Seeds"> Southern Fodlan Seeds
+				</label>
+				<label for="vs">
+					<input type="checkbox" name="usable" id="vs" value="Vegetable Seeds"> Vegetable Seeds
+				</label>
+				<label for="wfs">
+					<input type="checkbox" name="usable" id="wfs" value="Western Fodlan Seeds"> Western Fodlan Seeds
+				</label>
+				<label for="whfs">
+					<input type="checkbox" name="usable" id="whfs" value="White Flower Seeds"> White Flower Seeds
+				</label>
+				<label for="yfs">
+					<input type="checkbox" name="usable" id="yfs" value="Yellow Flower Seeds"> Yellow Flower Seeds
+				</label>
+				<button type="button" onclick="selectBuyable()">Select All Buyable Seeds</button>
+				</fieldset>
 
-				<p>Get top</p>
-				<label for="combo-limit"><input type="number" id="combo-limit" name="combo_limit" min="1" max="100" value="20"></label>
+				<fieldset>
+				<legend>Number of results displayed: </legend>
+				<label for="combo-limit">
+					<input type="number" id="combo-limit" name="combo_limit" min="1" max="50" value="20">
+				</label>
+				</fieldset>
+
+				<button type="submit">Go!</button>
 			</form>
 			<table>
 				<tr>
@@ -279,518 +296,6 @@
 					<td>Nordsalat Seeds</td><td>2</td>
 					<td>Purple Flower Seeds</td><td>1</td>
 					<td>Pale-Blue Flower Seeds</td><td>2</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>9</td>
-					<td>6</td>
-					<td>Nordsalat Seeds</td><td>4</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>9</td>
-					<td>6</td>
-					<td>Nordsalat Seeds</td><td>1</td>
-					<td>Eastern Fodlan Seeds</td><td>1</td>
-					<td>Pale-Blue Flower Seeds</td><td>3</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>9</td>
-					<td>5</td>
-					<td>Nordsalat Seeds</td><td>3</td>
-					<td>Boa-Fruit Seeds</td><td>1</td>
-					<td>Mixed Fruit Seeds</td><td>1</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>9</td>
-					<td>4</td>
-					<td>Nordsalat Seeds</td><td>2</td>
-					<td>Boa-Fruit Seeds</td><td>1</td>
-					<td>Angelica Seeds</td><td>1</td>
-					<td>Pale-Blue Flower Seeds</td><td>1</td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>9</td>
-					<td>4</td>
-					<td>Nordsalat Seeds</td><td>2</td>
-					<td>Boa-Fruit Seeds</td><td>1</td>
-					<td>Green Flower Seeds</td><td>1</td>
-					<td>Pale-Blue Flower Seeds</td><td>1</td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>9</td>
-					<td>5</td>
-					<td>Boa-Fruit Seeds</td><td>1</td>
-					<td>Blue Flower Seeds</td><td>1</td>
-					<td>Pale-Blue Flower Seeds</td><td>3</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>9</td>
-					<td>6</td>
-					<td>Nordsalat Seeds</td><td>1</td>
-					<td>Boa-Fruit Seeds</td><td>1</td>
-					<td>Pale-Blue Flower Seeds</td><td>2</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>9</td>
-					<td>6</td>
-					<td>Nordsalat Seeds</td><td>3</td>
-					<td>Mixed Fruit Seeds</td><td>1</td>
-					<td>Yellow Flower Seeds</td><td>1</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>9</td>
-					<td>4</td>
-					<td>Nordsalat Seeds</td><td>2</td>
-					<td>Angelica Seeds</td><td>1</td>
-					<td>Yellow Flower Seeds</td><td>1</td>
-					<td>Pale-Blue Flower Seeds</td><td>1</td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>9</td>
-					<td>5</td>
-					<td>Western Fodlan Seeds</td><td>1</td>
-					<td>Morfis-Plum Seeds</td><td>1</td>
-					<td>Nordsalat Seeds</td><td>3</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>9</td>
-					<td>5</td>
-					<td>Morfis-Plum Seeds</td><td>1</td>
-					<td>Morfis Seeds</td><td>1</td>
-					<td>Nordsalat Seeds</td><td>2</td>
-					<td>Pale-Blue Flower Seeds</td><td>1</td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>9</td>
-					<td>5</td>
-					<td>Southern Fodlan Seeds</td><td>1</td>
-					<td>Nordsalat Seeds</td><td>3</td>
-					<td>Blue Flower Seeds</td><td>1</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>9</td>
-					<td>5</td>
-					<td>Morfis Seeds</td><td>1</td>
-					<td>Nordsalat Seeds</td><td>3</td>
-					<td>Purple Flower Seeds</td><td>1</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>9</td>
-					<td>5</td>
-					<td>Nordsalat Seeds</td><td>2</td>
-					<td>Yellow Flower Seeds</td><td>1</td>
-					<td>Green Flower Seeds</td><td>1</td>
-					<td>Pale-Blue Flower Seeds</td><td>1</td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>9</td>
-					<td>6</td>
-					<td>Mixed Herb Seeds</td><td>1</td>
-					<td>Morfis-Plum Seeds</td><td>1</td>
-					<td>Pale-Blue Flower Seeds</td><td>3</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>9</td>
-					<td>6</td>
-					<td>Mixed Herb Seeds</td><td>1</td>
-					<td>Nordsalat Seeds</td><td>2</td>
-					<td>Blue Flower Seeds</td><td>1</td>
-					<td>Pale-Blue Flower Seeds</td><td>1</td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>9</td>
-					<td>6</td>
-					<td>Mixed Herb Seeds</td><td>1</td>
-					<td>Nordsalat Seeds</td><td>1</td>
-					<td>Purple Flower Seeds</td><td>1</td>
-					<td>Pale-Blue Flower Seeds</td><td>2</td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>9</td>
-					<td>6</td>
-					<td>Western Fodlan Seeds</td><td>1</td>
-					<td>Nordsalat Seeds</td><td>3</td>
-					<td>Eastern Fodlan Seeds</td><td>1</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>9</td>
-					<td>6</td>
-					<td>Western Fodlan Seeds</td><td>1</td>
-					<td>Nordsalat Seeds</td><td>1</td>
-					<td>Angelica Seeds</td><td>1</td>
-					<td>Pale-Blue Flower Seeds</td><td>2</td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>9</td>
-					<td>6</td>
-					<td>Western Fodlan Seeds</td><td>1</td>
-					<td>Nordsalat Seeds</td><td>1</td>
-					<td>Green Flower Seeds</td><td>1</td>
-					<td>Pale-Blue Flower Seeds</td><td>2</td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>9</td>
-					<td>6</td>
-					<td>Root Vegetable Seeds</td><td>1</td>
-					<td>Morfis-Plum Seeds</td><td>1</td>
-					<td>Nordsalat Seeds</td><td>1</td>
-					<td>Pale-Blue Flower Seeds</td><td>2</td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>9</td>
-					<td>6</td>
-					<td>Root Vegetable Seeds</td><td>1</td>
-					<td>Nordsalat Seeds</td><td>3</td>
-					<td>Blue Flower Seeds</td><td>1</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>9</td>
-					<td>6</td>
-					<td>Root Vegetable Seeds</td><td>1</td>
-					<td>Nordsalat Seeds</td><td>2</td>
-					<td>Purple Flower Seeds</td><td>1</td>
-					<td>Pale-Blue Flower Seeds</td><td>1</td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>9</td>
-					<td>6</td>
-					<td>Morfis-Plum Seeds</td><td>1</td>
-					<td>Southern Fodlan Seeds</td><td>1</td>
-					<td>Nordsalat Seeds</td><td>1</td>
-					<td>Pale-Blue Flower Seeds</td><td>2</td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>9</td>
-					<td>6</td>
-					<td>Morfis-Plum Seeds</td><td>1</td>
-					<td>Nordsalat Seeds</td><td>3</td>
-					<td>Angelica Seeds</td><td>1</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>9</td>
-					<td>6</td>
-					<td>Southern Fodlan Seeds</td><td>1</td>
-					<td>Nordsalat Seeds</td><td>2</td>
-					<td>Purple Flower Seeds</td><td>1</td>
-					<td>Pale-Blue Flower Seeds</td><td>1</td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>9</td>
-					<td>6</td>
-					<td>Southern Fodlan Seeds</td><td>1</td>
-					<td>Nordsalat Seeds</td><td>1</td>
-					<td>Eastern Fodlan Seeds</td><td>1</td>
-					<td>Pale-Blue Flower Seeds</td><td>2</td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>9</td>
-					<td>6</td>
-					<td>Morfis Seeds</td><td>1</td>
-					<td>Nordsalat Seeds</td><td>2</td>
-					<td>Eastern Fodlan Seeds</td><td>1</td>
-					<td>Pale-Blue Flower Seeds</td><td>1</td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>9</td>
-					<td>6</td>
-					<td>Morfis Seeds</td><td>1</td>
-					<td>Angelica Seeds</td><td>1</td>
-					<td>Pale-Blue Flower Seeds</td><td>3</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>9</td>
-					<td>6</td>
-					<td>Morfis Seeds</td><td>1</td>
-					<td>Green Flower Seeds</td><td>1</td>
-					<td>Pale-Blue Flower Seeds</td><td>3</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>9</td>
-					<td>6</td>
-					<td>Nordsalat Seeds</td><td>1</td>
-					<td>Angelica Seeds</td><td>2</td>
-					<td>Pale-Blue Flower Seeds</td><td>2</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>9</td>
-					<td>6</td>
-					<td>Blue Flower Seeds</td><td>1</td>
-					<td>Yellow Flower Seeds</td><td>1</td>
-					<td>Pale-Blue Flower Seeds</td><td>3</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>8</td>
-					<td>2</td>
-					<td>Nordsalat Seeds</td><td>4</td>
-					<td>Pale-Blue Flower Seeds</td><td>1</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>8</td>
-					<td>2</td>
-					<td>Nordsalat Seeds</td><td>1</td>
-					<td>Boa-Fruit Seeds</td><td>1</td>
-					<td>Pale-Blue Flower Seeds</td><td>3</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>8</td>
-					<td>2</td>
-					<td>Mixed Fruit Seeds</td><td>1</td>
-					<td>Pale-Blue Flower Seeds</td><td>4</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>8</td>
-					<td>6</td>
-					<td>Nordsalat Seeds</td><td>1</td>
-					<td>Mixed Fruit Seeds</td><td>1</td>
-					<td>Pale-Blue Flower Seeds</td><td>3</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>8</td>
-					<td>2</td>
-					<td>Southern Fodlan Seeds</td><td>1</td>
-					<td>Nordsalat Seeds</td><td>4</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>8</td>
-					<td>3</td>
-					<td>Mixed Herb Seeds</td><td>1</td>
-					<td>Nordsalat Seeds</td><td>3</td>
-					<td>Pale-Blue Flower Seeds</td><td>1</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>8</td>
-					<td>3</td>
-					<td>Root Vegetable Seeds</td><td>1</td>
-					<td>Nordsalat Seeds</td><td>4</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>8</td>
-					<td>3</td>
-					<td>Nordsalat Seeds</td><td>1</td>
-					<td>Yellow Flower Seeds</td><td>1</td>
-					<td>Pale-Blue Flower Seeds</td><td>3</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>8</td>
-					<td>4</td>
-					<td>Western Fodlan Seeds</td><td>1</td>
-					<td>Pale-Blue Flower Seeds</td><td>4</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>8</td>
-					<td>4</td>
-					<td>Nordsalat Seeds</td><td>4</td>
-					<td>Blue Flower Seeds</td><td>1</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>8</td>
-					<td>5</td>
-					<td>Morfis-Plum Seeds</td><td>1</td>
-					<td>Nordsalat Seeds</td><td>2</td>
-					<td>Pale-Blue Flower Seeds</td><td>2</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>8</td>
-					<td>5</td>
-					<td>Nordsalat Seeds</td><td>3</td>
-					<td>Purple Flower Seeds</td><td>1</td>
-					<td>Pale-Blue Flower Seeds</td><td>1</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>8</td>
-					<td>5</td>
-					<td>Angelica Seeds</td><td>1</td>
-					<td>Pale-Blue Flower Seeds</td><td>4</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>8</td>
-					<td>6</td>
-					<td>Nordsalat Seeds</td><td>2</td>
-					<td>Eastern Fodlan Seeds</td><td>1</td>
-					<td>Pale-Blue Flower Seeds</td><td>2</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>8</td>
-					<td>6</td>
-					<td>Green Flower Seeds</td><td>1</td>
-					<td>Pale-Blue Flower Seeds</td><td>4</td>
-					<td></td>
-					<td></td>
 					<td></td>
 					<td></td>
 					<td></td>
