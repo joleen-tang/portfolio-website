@@ -59,7 +59,7 @@ def get_combo_info(max_cultivation_level, valid_combo_ids, priority, secondary_p
               f'FROM (combo JOIN seed_combo USING(comboID)) JOIN seed USING(seedID) ' \
               'WHERE combo.comboID IN {} '.format(combo_ids)
     s_query += f'ORDER BY score DESC, {priority} DESC, {secondary_priority} DESC, "cultivation level", ' \
-               f'size, combo.comboID'
+               f'size, combo.comboID, seed_combo.quantity'
 
     cursor.execute(s_query, (max_cultivation_level, max_cultivation_level))
     return cursor.fetchall()
