@@ -12,15 +12,19 @@ def get_size_cultivation_level(prof_level):
     return size, max_cultivation_level
 
 
-def filter_size_stats(max_size, priority, cursor):
+def filter_size_stats(max_size, priority, unwanted, cursor):
     # Returns all comboIDs that prioritize the given stat and are of a valid size
     s_query = f'SELECT comboID FROM combo WHERE '
     if len(priority) > 0:
-        s_query += '{} > size / 2 AND size <= ? ORDER BY comboID'.format(priority)
-        cursor.execute(s_query, (max_size,))
-    else:
-        s_query += f'size <= ? ORDER BY comboID'
-        cursor.execute(s_query, (max_size,))
+        s_query += '{} > size / 2 AND '.format(priority)
+    if len(unwanted) > 0:
+        if len(unwanted) == 1:
+            s_query += '{} = 0 AND '.format(unwanted[0])
+        else:
+            for stat in unwanted:
+                s_query += '{} = 0 AND '.format(stat)
+    s_query += 'size <= ? ORDER BY comboID'
+    cursor.execute(s_query, (max_size,))
     return cursor.fetchall()
 
 
@@ -65,13 +69,13 @@ app = flask.Flask(__name__)
 
 
 @app.route('/')
-def get_filtered_combo_ids(prof_level, priority, secondary_priority, unusable, combo_limit):
+def get_filtered_combo_ids(prof_level, priority, secondary_priority, unusable, unwanted_stats, combo_limit):
     con = sqlite3.connect('greenhouse_lite.db')
     cur = con.cursor()
     size_cult = get_size_cultivation_level(prof_level)
 
     # Filter out invalid combos
-    size_priority_filtered = filter_size_stats(size_cult[0], priority, cur)
+    size_priority_filtered = filter_size_stats(size_cult[0], priority, unwanted_stats, cur)
     seed_filtered = filter_seeds(unusable, cur)
     valid_combo_ids = tuple(set(size_priority_filtered).difference(set(seed_filtered)))
 
@@ -127,4 +131,4 @@ def end_combo_row_html(seed_count, row_html):
     return row_html + '</tr>\n'
 
 
-print(get_filtered_combo_ids(9, 'speed', 'luck', (21,), 50))
+print(get_filtered_combo_ids(9, 'speed', 'luck', None, ('resistance', 'charm'), 50))
