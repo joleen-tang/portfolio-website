@@ -54,7 +54,7 @@ nav > div {
 nav a + ul {
 	display: none;
 	position: absolute;
-	left: 16vw;
+	left: 13vw;
 	top: 0;
 	width:100%;
 	max-width:25vw;
@@ -104,7 +104,7 @@ button {
 	color:#ffffff;
 }
 .nav-menu-icon{
-	font-size:4vw;
+	font-size:3vw;
 }
 .collapsable-sub-heading{
 	text-align:left;
