@@ -53,11 +53,10 @@ form{
 }
 fieldset{
 	padding: 1% 2%;
-	margin:1% 2%;
+	margin:1%;
 	font-size:1.1vw;
 	background-color: rgba(168, 195, 206, 0.5);
 	border-color: #193947;
-	margin-inline-end:0;
 }
 .small-q{
 	width:18%;
