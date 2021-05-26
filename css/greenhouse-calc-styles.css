@@ -13,8 +13,11 @@ table{
 	border-collapse: collapse;
 	font-size: 1.1vw;
 }
-tr{
-	border: 0.5px solid #000000;
+tr:nth-child(2n){
+	background-color: rgba(168, 206, 204, 0.8);
+}
+tr:nth-child(2n-1){
+	background-color: rgba(204, 224, 223, 0.8);
 }
 td, th{
 	margin:0;
@@ -27,7 +30,6 @@ th{
 	padding: 0.5%;
 }
 td{
-	background-color: rgba(168, 206, 204, 0.8);
 	padding: 0.5%;
 	padding-right:0;
 }
@@ -52,11 +54,16 @@ form{
 fieldset{
 	padding: 1% 2%;
 	margin:1% 2%;
-	min-width: 16%;
-	max-width: 100%;
 	font-size:1.1vw;
 	background-color: rgba(168, 195, 206, 0.5);
 	border-color: #193947;
+	margin-inline-end:0;
+}
+.small-q{
+	width:18%;
+}
+.big-q{
+	width:100%;
 }
 legend{
 	font-size:1.2vw;
@@ -68,11 +75,12 @@ form button{
 	margin: 4% 3% 1% 2%;
 	background-color: #0F232C;
 	color: #ffffff;
+	font-size: 1.1vw;
 }
 form label{
 	display: inline-block;
 	min-width: 33%;
-	margin-bottom: 1%;
+	margin-bottom: 0.5vw;
 }
 input{
 	font-size: 1.1vw;
@@ -80,4 +88,9 @@ input{
 fieldset > button {
 	margin-top:1%;
 	margin-left:0;
+}
+.unwanted-error, .seed-error{
+	display: none;
+	line-height: 1.4;
+	color:#b00000;
 }

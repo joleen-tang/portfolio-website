@@ -43,7 +43,7 @@
 		</nav>
 		<section>
 			<form>
-				<fieldset>
+				<fieldset class="small-q">
 				<legend>Primary stat priority:</legend>
 				<label for="hp">
 					<input type="radio" name="priority" id="hp" value="hp"> HP
@@ -77,7 +77,7 @@
 				</label><br>
 				</fieldset>
 
-				<fieldset>
+				<fieldset class="small-q">
 				<legend>Secondary stat priority: </legend>
 				<label for="hp2">
 					<input type="radio" name="secondary_priority" id="hp2" value="hp"> HP
@@ -111,38 +111,39 @@
 				</label><br>
 				</fieldset>
 
-				<fieldset>
+				<fieldset class="small-q">
 				<legend>Unwanted Stats: </legend>
 				<label for="hp3">
-					<input type="checkbox" name="secondary_priority" id="hp3" value="hp"> HP
+					<input type="checkbox" name="unwanted" id="hp3" value="hp"> HP
 				</label><br>
 				<label for="strength3">
-					<input type="checkbox" name="secondary_priority" id="strength3" value="strength"> Strength
+					<input type="checkbox" name="unwanted" id="strength3" value="strength"> Strength
 				</label><br>
 				<label for="magic3">
-					<input type="checkbox" name="secondary_priority" id="magic3" value="magic"> Magic
+					<input type="checkbox" name="unwanted" id="magic3" value="magic"> Magic
 				</label><br>
 				<label for="dexterity3">
-					<input type="checkbox" name="secondary_priority" id="dexterity3" value="dexterity"> Dexterity
+					<input type="checkbox" name="unwanted" id="dexterity3" value="dexterity"> Dexterity
 				</label><br>
 				<label for="speed3">
-					<input type="checkbox" name="secondary_priority" id="speed3" value="speed"> Speed
+					<input type="checkbox" name="unwanted" id="speed3" value="speed"> Speed
 				</label><br>
 				<label for="luck3">
-					<input type="checkbox" name="secondary_priority" id="luck3" value="luck"> Luck
+					<input type="checkbox" name="unwanted" id="luck3" value="luck"> Luck
 				</label><br>
 				<label for="defence3">
-					<input type="checkbox" name="secondary_priority" id="defence3" value="defence"> Defence
+					<input type="checkbox" name="unwanted" id="defence3" value="defence"> Defence
 				</label><br>
 				<label for="resistance3">
-					<input type="checkbox" name="secondary_priority" id="resistance3" value="resistance"> Resistance
+					<input type="checkbox" name="unwanted" id="resistance3" value="resistance"> Resistance
 				</label><br>
 				<label for="charm3">
-					<input type="checkbox" name="secondary_priority" id="charm3" value="charm"> Charm
+					<input type="checkbox" name="unwanted" id="charm3" value="charm"> Charm
 				</label><br>
+				<span class="unwanted-error">Stat is selected as both priority and unwanted</span>
 				</fieldset>
 
-				<fieldset>
+				<fieldset class="small-q">
 				<legend>Professor Level: </legend>
 				<label for="e">
 					<input type="radio" name="professor_level" id="e" value="1" checked> E
@@ -176,7 +177,7 @@
 				</label><br>
 				</fieldset>
 
-				<fieldset class="checkbox">
+				<fieldset class="checkbox big-q">
 				<legend>Available Seeds: </legend>
 				<label for="as">
 					<input type="checkbox" name="usable" id="as" value="Albinean Seeds"> Albinean Seeds
@@ -242,10 +243,11 @@
 					<input type="checkbox" name="usable" id="yfs" value="Yellow Flower Seeds"> Yellow Flower Seeds
 				</label>
 				<button type="button" onclick="selectBuyable()">Select All Buyable Seeds</button>
+				<span class="seed-error">Please select at least one seed.</span>
 				</fieldset>
 
-				<fieldset>
-				<legend>Number of results displayed: </legend>
+				<fieldset class="small-q">
+				<legend>Results displayed: </legend>
 				<label for="combo-limit">
 					<input type="number" id="combo-limit" name="combo_limit" min="1" max="50" value="20">
 				</label>
