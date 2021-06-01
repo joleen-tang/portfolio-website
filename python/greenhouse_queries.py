@@ -1,6 +1,9 @@
+import math
 import sqlite3
 import flask
-import math
+# import os
+# from flask_wtf.csrf import CSRFProtect
+from flask_cors import CORS
 
 
 def get_size_cultivation_level(prof_level):
@@ -12,44 +15,40 @@ def get_size_cultivation_level(prof_level):
     return size, max_cultivation_level
 
 
-def filter_size_stats(max_size, priority, unwanted, cursor):
-    # Returns all comboIDs that prioritize the given stat and are of a valid size
-    s_query = f'SELECT comboID FROM combo WHERE '
-    if len(priority) > 0:
-        s_query += '{} > size / 2 AND '.format(priority)
-    if len(unwanted) > 0:
-        if len(unwanted) == 1:
-            s_query += '{} = 0 AND '.format(unwanted[0])
+def filter_combos(usable, max_size, priority, unwanted, cursor):
+    # usable is a tuple of usable seed names
+    # Returns all comboIDs that contain invalid seeds, are too large, have unwanted stats, or do not have priority stat
+    if usable is not None:
+        s_query = 'SELECT combo.comboID FROM (combo JOIN seed_combo USING(comboID)) JOIN seed USING(seedID) ' \
+                  'WHERE seed.name '
+        # Filter seed names
+        if len(usable) == 1:
+            s_query += f'!= {usable[0]} OR '
         else:
-            for stat in unwanted:
-                s_query += '{} = 0 AND '.format(stat)
-    s_query += 'size <= ? ORDER BY comboID'
-    cursor.execute(s_query, (max_size,))
-    return cursor.fetchall()
-
-
-def filter_seeds(unusable, cursor):
-    # unusable is a tuple of unusable seedIDs)
-    # Returns all comboIDs that contain invalid seeds
-    if unusable is not None:
-        s_query = 'SELECT combo.comboID FROM combo JOIN seed_combo USING(comboID) WHERE seed_combo.seedID '
-        if len(unusable) == 1:
-            s_query += f'= {unusable[0]} '
-        else:
-            s_query += 'IN {} '.format(unusable)
-        s_query += 'ORDER BY combo.comboID'
-        cursor.execute(s_query)
+            s_query += 'NOT IN {} OR '.format(usable)
+        # Filter by priority stat
+        if priority is not None:
+            s_query += '{} <= size / 2 OR '.format(priority)
+        # Filter out unwanted stats
+        if len(unwanted) > 0:
+            if len(unwanted) == 1:
+                s_query += '{} != 0 OR '.format(unwanted[0])
+            else:
+                for stat in unwanted:
+                    s_query += '{} != 0 OR '.format(stat)
+        # Filter by combo size
+        s_query += 'size > ? ORDER BY combo.comboID'
+        cursor.execute(s_query, (max_size,))
         return cursor.fetchall()
     else:
         return ()
 
 
-def get_combo_info(max_cultivation_level, valid_combo_ids, priority, secondary_priority, cursor):
+def get_combo_info(max_cultivation_level, invalid_combo_ids, priority, secondary_priority, combo_limit, cursor):
     # Put rows of valid_combo_ids into one tuple
     combo_ids = ()
-    for combo in valid_combo_ids:
+    for combo in invalid_combo_ids:
         combo_ids += combo
-
     s_query = 'SELECT combo.comboID, ' \
               f'CASE WHEN cultivation_level > ? THEN ' \
               f'zero_cultivation_score ELSE cultivation_score END AS score, ' \
@@ -57,35 +56,29 @@ def get_combo_info(max_cultivation_level, valid_combo_ids, priority, secondary_p
               f'THEN 1 ELSE cultivation_level END AS "cultivation level", ' \
               f'seed.name, seed_combo.quantity ' \
               f'FROM (combo JOIN seed_combo USING(comboID)) JOIN seed USING(seedID) ' \
-              'WHERE combo.comboID IN {} '.format(combo_ids)
-    s_query += 'ORDER BY score DESC, '
-    if len(priority) > 0:
+              'WHERE combo.comboID NOT IN {} '.format(combo_ids)
+    s_query += 'ORDER BY zero_cultivation_score DESC, '
+    if priority is not None:
         s_query += f'{priority} DESC, '
-    if len(secondary_priority) > 0:
+    if secondary_priority is not None:
         s_query += f'{secondary_priority} DESC, '
-    s_query += '"cultivation level", size, combo.comboID, seed_combo.quantity DESC, seed.name'
+    s_query += 'size, combo.comboID, seed_combo.quantity DESC, seed.name LIMIT ?'
 
-    cursor.execute(s_query, (max_cultivation_level, max_cultivation_level))
+    cursor.execute(s_query, (max_cultivation_level, max_cultivation_level, combo_limit*5))
     return cursor.fetchall()
 
 
-app = flask.Flask(__name__)
-
-
-@app.route('/')
 def get_filtered_combo_ids(prof_level, priority, secondary_priority, unusable, unwanted_stats, combo_limit):
     con = sqlite3.connect('greenhouse_lite.db')
     cur = con.cursor()
     size_cult = get_size_cultivation_level(prof_level)
 
     # Filter out invalid combos
-    size_priority_filtered = filter_size_stats(size_cult[0], priority, unwanted_stats, cur)
-    seed_filtered = filter_seeds(unusable, cur)
-    valid_combo_ids = tuple(set(size_priority_filtered).difference(set(seed_filtered)))
+    invalid_combo_ids = filter_combos(unusable, size_cult[0], priority, unwanted_stats, cur)
 
     # Sort valid combos and get info to be displayed
     # Output tuples (comboID, score, cultivation level, seed name, seed quantity)
-    valid_combos = get_combo_info(size_cult[1], valid_combo_ids, priority, secondary_priority, cur)
+    valid_combos = get_combo_info(size_cult[1], invalid_combo_ids, priority, secondary_priority, combo_limit, cur)
 
     # Format valid combos into HTML table rows
     combos_html = ''
@@ -113,26 +106,51 @@ def get_filtered_combo_ids(prof_level, priority, secondary_priority, unusable, u
             combo_seed_count += 1
         row_html = end_combo_row_html(combo_seed_count, row_html)
         combos_html += row_html
-
     cur.close()
     con.close()
     return combos_html
 
 
 def add_seed_html(name, quantity, row_html):
-    row_html += f'\t<td>{name}</td><td>{quantity}</td>\n'
+    row_html += f'<td>{name}</td><td>{quantity}</td>'
     return row_html
 
 
 def start_combo_row_html(score, c_level):
-    return f'<tr>\n\t<td>{score}</td>\n\t<td>{c_level}</td>\n'
+    return f'<tr><td>{score}</td><td>{c_level}</td>'
 
 
 def end_combo_row_html(seed_count, row_html):
     # Add any required empty table cells
     for a in range(10 - seed_count * 2):
-        row_html += '\t<td></td>\n'
-    return row_html + '</tr>\n'
+        row_html += '<td></td>'
+    return row_html + '</tr>'
 
 
-print(get_filtered_combo_ids(9, 'speed', '', None, ('resistance', 'charm'), 50))
+app = flask.Flask(__name__)
+CORS(app)
+# csrf = CSRFProtect(app)
+# app.config['SECRET_KEY'] = os.urandom(12).hex()
+
+
+@app.route('/', methods=['GET', 'POST'])
+def handle_form():
+    if flask.request.method == 'POST':
+        prof_level = int(flask.request.form.get('professor_level'))
+        priority = flask.request.form.get('priority')
+        secondary_priority = flask.request.form.get('secondary_priority')
+        usable = tuple(flask.request.form.get('usable'))
+        u = flask.request.form.get('unwanted')
+        if u is None:
+            unwanted_stats = ()
+        else:
+            unwanted_stats = tuple(u)
+        combo_limit = int(flask.request.form.get('combo_limit'))
+        # get_filtered_combo_ids(prof_level, priority, secondary_priority, usable, unwanted_stats, combo_limit)
+        con = sqlite3.connect('greenhouse_lite.db')
+        cur = con.cursor()
+        cur.execute("SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%'")
+        return str(cur.fetchall())
+    elif flask.request.method == 'GET':
+        return flask.render_template('greenhouse.html')
+

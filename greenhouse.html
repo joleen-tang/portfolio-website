@@ -9,6 +9,8 @@
 	<script src="js/website-scripts.js"></script>
 	<script src="js/greenhouse-scripts.js"></script>
 	<script src="https://kit.fontawesome.com/b9820aecc1.js" crossorigin="anonymous"></script>
+<!-- 	<meta name="csrf-token" content="{{ csrf_token() }}">
+	<script type="text/javascript" src="js/csrf.js"></script> -->
 	<link rel="stylesheet" href="css/art-webpage-styles.css">
 	<link rel="stylesheet" href="css/greenhouse-calc-styles.css">
 </head>
@@ -42,7 +44,8 @@
 			</a>
 		</nav>
 		<section>
-			<form>
+			<form action="http://127.0.0.1:5000" method="POST" id="greenhouse-form">
+<!-- 				<input type="hidden" name="csrf_token" value="{{csrf_token()}}"> -->
 				<fieldset class="small-q">
 				<legend>Primary stat priority:</legend>
 				<label for="hp">
@@ -253,57 +256,27 @@
 				</label>
 				</fieldset>
 
-				<button type="submit">Go!</button>
+				<button type="submit" id="greenhouse-form-button">Go!</button>
 			</form>
-			<table>
-				<tr>
-					<th>Score</th>
-					<th>Cultivation Level</th>
-					<th class="seed-col">Seed 1</th>
-					<th class="qty-col">Qty</th>
-					<th class="seed-col">Seed 2</th>
-					<th class="qty-col">Qty</th>
-					<th class="seed-col">Seed 3</th>
-					<th class="qty-col">Qty</th>
-					<th class="seed-col">Seed 4</th>
-					<th class="qty-col">Qty</th>
-					<th class="seed-col">Seed 5</th>
-					<th class="qty-col">Qty</th>
-				</tr>
-				<tr>
-					<td>9</td>
-					<td>5</td>
-					<td>Morfis-Plum Seeds</td><td>1</td>
-					<td>Nordsalat Seeds</td><td>1</td>
-					<td>Pale-Blue Flower Seeds</td><td>3</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>9</td>
-					<td>5</td>
-					<td>Nordsalat Seeds</td><td>3</td>
-					<td>Blue Flower Seeds</td><td>1</td>
-					<td>Pale-Blue Flower Seeds</td><td>1</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>9</td>
-					<td>5</td>
-					<td>Nordsalat Seeds</td><td>2</td>
-					<td>Purple Flower Seeds</td><td>1</td>
-					<td>Pale-Blue Flower Seeds</td><td>2</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-			</table>
+			<section id="results">
+				<p>Please wait a moment...</p>
+				<table>
+					<tr>
+						<th>Score</th>
+						<th>Cultivation Level</th>
+						<th class="seed-col">Seed 1</th>
+						<th class="qty-col">Qty</th>
+						<th class="seed-col">Seed 2</th>
+						<th class="qty-col">Qty</th>
+						<th class="seed-col">Seed 3</th>
+						<th class="qty-col">Qty</th>
+						<th class="seed-col">Seed 4</th>
+						<th class="qty-col">Qty</th>
+						<th class="seed-col">Seed 5</th>
+						<th class="qty-col">Qty</th>
+					</tr>
+				</table>
+			</section>
 		</section>
 		</div>
 	</main>

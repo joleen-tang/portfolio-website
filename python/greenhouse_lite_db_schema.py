@@ -29,8 +29,22 @@ def add_stats():
     con.close()
 
 
+def create_indexes():
+    con = sqlite3.connect('greenhouse_lite.db')
+    cur = con.cursor()
+
+    cur.execute("CREATE INDEX IF NOT EXISTS idx_combo ON combo (cultivation_score, size)")
+    cur.execute("CREATE INDEX IF NOT EXISTS idx_seed_combo ON seed_combo (quantity)")
+    cur.execute("CREATE INDEX IF NOT EXISTS idx_seed ON seed (name)")
+
+    con.commit()
+    cur.close()
+    con.close()
+
+
 gh.delete_tables('greenhouse_lite.db')
 gh.set_up_seed_table('greenhouse_lite.db')
 gh.set_up_combo_tables('greenhouse_lite.db')
 add_cultivation()
 add_stats()
+create_indexes()

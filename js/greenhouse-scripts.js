@@ -1,12 +1,12 @@
-const buyable = ['Mixed Herb Seeds', 'Western Fodlan Seeds', 'Root Vegetable Seeds', 'Vegetable Seeds', 
+const BUYABLE = ['Mixed Herb Seeds', 'Western Fodlan Seeds', 'Root Vegetable Seeds', 'Vegetable Seeds', 
 	'Northern Fodlan Seeds', 'Southern Fodlan Seeds', 'Eastern Fodlan Seeds', 'Red Flower Seeds', 'White Flower Seeds',
 	'Blue Flower Seeds', 'Purple Flower Seeds', 'Yellow Flower Seeds', 'Green Flower Seeds', 'Pale-Blue Flower Seeds'];
 
 
 // Functionality for 'Select All Buyable Seeds' button
 function selectBuyable(){
-	for (seed in buyable){
-		let node = $("input[value='"+buyable[seed]+"']");
+	for (seed in BUYABLE){
+		let node = $("input[value='"+BUYABLE[seed]+"']");
 		if (node.length){
 			node.prop("checked", true);
 		}
@@ -20,22 +20,23 @@ function validateSeeds(){
 	for (seed in seeds){
 		if (seeds[seed].checked){
 			hideError('seed-error');
-			return;
+			return true;
 		}
 	}
 	showError('seed-error');
 	event.preventDefault();
+	return false;
 }
 
 
-function showError(error_name){
-	let error = $("."+error_name);
+function showError(errorName){
+	let error = $("."+errorName);
 	error[0].style.display="inline-block";
 }
 
 
-function hideError(error_name){
-	let error = $("."+error_name);
+function hideError(errorName){
+	let error = $("."+errorName);
 	error[0].style.display="none";
 }
 
@@ -44,25 +45,70 @@ function validateUnwanted(){
 	let unwanted = $("input[name='unwanted']");
 	for (i in unwanted){
 		if (unwanted[i].checked){
-			console.log(unwanted[i].value);
-			let check_priority = $("#"+unwanted[i].value);
-			let check_priority2 = $("#"+unwanted[i].value+"2");
-			if (check_priority[0].checked || check_priority2[0].checked){
+			let checkPriority = $("#"+unwanted[i].value);
+			let checkPriority2 = $("#"+unwanted[i].value+"2");
+			if (checkPriority[0].checked || checkPriority2[0].checked){
 				showError('unwanted-error');
 				event.preventDefault();
-				return;
+				return false;
 			}
 		}
 	}
 	hideError('unwanted-error');
+	return true;
 }
 
 
-// Adding event listeners to form
-$(document).ready(function(){
-	let forms = $("form")
-	for (i = 0; i < forms.length; i++){
-		forms[i].addEventListener("submit", validateSeeds)
-		forms[i].addEventListener("submit", validateUnwanted)
-	}
+$(document).ready(function(){$("#greenhouse-form-button").click(function(event){
+		var form = $("#greenhouse-form");
+		var formID = "greenhouse-form";
+		var url = form.prop('action');
+		var type = form.prop('method');
+		var formData = getFormData(formID);
+
+		sendForm(form, url, type, formData);
+	})
 })
+
+
+function getFormData(formID){
+	return new FormData(document.getElementById(formID))
+}
+
+
+function sendForm(form, url, type, formData){
+	let seedVal = validateSeeds();
+	let unwantedVal = validateUnwanted();
+	if (form[0].checkValidity() && seedVal && unwantedVal){
+		event.preventDefault();
+
+		modularAjax(url, type, formData);
+	}
+}
+
+
+function modularAjax(url, type, formData){
+	$.ajax({
+		url: url,
+		type: type,
+		data: formData,
+		processData: false,
+		contentType: false,
+		dataType: "text",
+		success: function(data){
+			var results = $("#results table")[0];
+			if (!$.trim(data)){
+				$("#results p")[0].innerHTML("No combinations were found");
+				$("#results p")[0].style.display="block";
+			}
+			else{
+				$("#results table tbody")[0].innerHTML += data;
+				$("#results p")[0].style.display="none";
+				// $("#results table tbody")[0].style.display = "table-row-group";
+				$("#results")[0].style.display = "block";
+				$("#results table")[0].style.display = "table";
+			}
+		}
+	})
+}
+
