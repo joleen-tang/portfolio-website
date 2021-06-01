@@ -1,2 +1,4 @@
-# personal-art
-Website for personal art
+# portfolio-website
+Portfolio website
+
+Displays artworks, coding projects, etc.
