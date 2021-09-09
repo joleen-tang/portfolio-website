@@ -1,4 +1,6 @@
-python/greenhouse.db
+greenhouse.db
 python/greenhouse.db-journal
 python/test.py
 python/FE3H_Seeds.csv
+python/greenhouse_lite_db_schema.py
+python/populate_greenhouse_lite.py

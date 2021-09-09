@@ -3,8 +3,9 @@
     "",
     "\\css",
     "\\js",
-    "\\php"
+    "\\php",
+    "\\venv"
   ],
-  "SelectedNode": "\\php",
+  "SelectedNode": "\\venv\\Scripts",
   "PreviewInSolutionExplorer": false
 }
