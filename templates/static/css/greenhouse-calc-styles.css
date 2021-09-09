@@ -1,0 +1,107 @@
+section{
+	background-color: #A8C3CE;
+	width:98%;
+	box-sizing: border-box;
+	margin: 2% 1%;
+	font-size: 1.1vw;
+}
+table{
+	font-family: "Optima", sans-serif;
+	box-sizing: border-box;
+	background-color:rgba(0, 0, 0, 0.5);
+	border-collapse: collapse;
+	font-size: 1.1vw;
+	display: none;
+	width: 100%;
+}
+tr:nth-child(2n){
+	background-color: rgba(168, 206, 204, 0.8);
+}
+tr:nth-child(2n-1){
+	background-color: rgba(204, 224, 223, 0.8);
+}
+td, th{
+	margin:0;
+	border: 0.5px solid #000000;
+}
+th{
+	background-color: #0F232C;
+	color:#98AFB9;
+	text-align: center;
+	padding: 0.5%;
+}
+td{
+	padding: 0.5%;
+	padding-right:0;
+}
+th.seed-col{
+	width:10.5vw;
+}
+th.qty-col{
+	width:3vw;
+}
+form{
+	width:98%;
+	margin: 2% 1%;
+	padding:2% 1%;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: stretch;
+	background-color: rgba(168, 206, 204, 0.8);
+}
+fieldset{
+	padding: 1% 2%;
+	margin:1%;
+	background-color: rgba(168, 195, 206, 0.5);
+	border-color: #193947;
+}
+.small-q{
+	width:18%;
+}
+.big-q{
+	width:100%;
+}
+legend{
+	font-size:1.2vw;
+	font-weight: bold;
+}
+form button{
+	display: inline-block;
+	padding:1% 2%;
+	margin: 4% 3% 1% 2%;
+	background-color: #0F232C;
+	color: #ffffff;
+	font-size: 1.1vw;
+}
+form label{
+	display: inline-block;
+	min-width: 33%;
+	margin-bottom: 0.5vw;
+}
+input{
+	font-size: 1.1vw;
+}
+fieldset > button {
+	margin-top:1%;
+	margin-left:0;
+}
+.unwanted-error, .seed-error{
+	display: none;
+	line-height: 1.4;
+	color:#b00000;
+}
+
+#results{
+	display: none;
+	background-color: rgba(168, 206, 204, 0.8);
+}
+
+#results p{
+	color: #000000;
+	font-size: 1.1vw;
+	display: none;
+	width: 100%;
+}
