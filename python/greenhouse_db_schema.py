@@ -1,6 +1,7 @@
 import sqlite3
 import csv
 import itertools
+import math
 
 
 def set_up_seed_table(db_file):
@@ -38,7 +39,22 @@ def set_up_combo_tables(db_file):
 
     # Table to store combos
     cur.execute('CREATE TABLE combo('
-                'comboID INTEGER PRIMARY KEY, size INTEGER, total_rank INTEGER, total_rarity INTEGER)')
+                'comboID INTEGER PRIMARY KEY, '
+                'size INTEGER, '
+                'total_rank INTEGER, '
+                'total_rarity INTEGER, '
+                'zero_cultivation_score INTEGER, '
+                'cultivation_score INTEGER, '
+                'cultivation_level INTEGER, '
+                'hp INTEGER DEFAULT(0), '
+                'strength INTEGER DEFAULT(0), '
+                'magic INTEGER DEFAULT(0), '
+                'dexterity INTEGER DEFAULT(0), '
+                'speed INTEGER DEFAULT(0), '
+                'luck INTEGER DEFAULT(0), '
+                'defence INTEGER DEFAULT(0), '
+                'resistance INTEGER DEFAULT(0), '
+                'charm INTEGER DEFAULT(0))')
     # Table to store what seeds are in what combo
     cur.execute('CREATE TABLE seed_combo('
                 'comboID INTEGER, seedID INTEGER, quantity INTEGER,'
@@ -50,8 +66,8 @@ def set_up_combo_tables(db_file):
     con.close()
 
 
-def populate_combo_tables():
-    con = sqlite3.connect('greenhouse.db')
+def populate_combo_tables(db_file):
+    con = sqlite3.connect(db_file)
     cur = con.cursor()
 
     cur.execute('SELECT * FROM seed')
@@ -110,7 +126,75 @@ def delete_tables(db_file):
     con.close()
 
 
-delete_tables('greenhouse.db')
-set_up_seed_table('greenhouse.db')
-set_up_combo_tables('greenhouse.db')
-populate_combo_tables()
+def create_indexes(db_file):
+    con = sqlite3.connect(db_file)
+    cur = con.cursor()
+
+    cur.execute("CREATE INDEX IF NOT EXISTS idx_combo ON combo (cultivation_score, size)")
+    cur.execute("CREATE INDEX IF NOT EXISTS idx_seed_combo ON seed_combo (quantity)")
+    cur.execute("CREATE INDEX IF NOT EXISTS idx_seed ON seed (name)")
+
+    con.commit()
+    cur.close()
+    con.close()
+
+
+def calculate_cultivation(db_file):
+    con = sqlite3.connect(db_file)
+    cur = con.cursor()
+
+    cur.execute('SELECT comboID, total_rank, total_rarity FROM combo')
+    combos = cur.fetchall()
+
+    for c in combos:
+        zero_update_query = 'UPDATE combo set zero_cultivation_score = ' + str(get_effective_score(get_score(c, 1))) + \
+                            ' WHERE comboID = '+str(c[0])
+        cur.execute(zero_update_query)
+        cultivation_level = 2
+        while cultivation_level < 7:
+            score = get_score(c, cultivation_level)
+            if score % 10 == 2 or score % 10 == 1:
+                update_query = 'UPDATE combo SET cultivation_score = '+str(get_effective_score(score)) + \
+                               ', cultivation_level = ' + str(cultivation_level)+' WHERE comboID = '+str(c[0])
+                cur.execute(update_query)
+                break
+            cultivation_level += 1
+    con.commit()
+    cur.close()
+    con.close()
+
+
+def get_score(combo, cultivation_level):
+    # combo is a tuple (comboID, total_rank, total_rarity)
+    a = (12 - (combo[1] % 12)) * 5
+    b = math.floor((combo[2] / 5) * 4)
+    c = (cultivation_level+4) * 2
+    return a + b + c
+
+
+def get_effective_score(score):
+    return score // 10
+
+
+def populate_combo_stats(db_file):
+    con = sqlite3.connect(db_file)
+    cur = con.cursor()
+
+    cur.execute('SELECT seed_combo.comboID, seed.stat, seed_combo.quantity FROM seed_combo JOIN seed USING (seedID)')
+    for row in cur.fetchall():
+        query_string = 'UPDATE combo SET '+row[1].lower()+' = '+row[1].lower()+' + '+str(row[2])\
+                       + ' WHERE comboID = '+str(row[0])
+        cur.execute(query_string)
+
+    con.commit()
+    cur.close()
+    con.close()
+
+
+delete_tables('../greenhouse.db')
+set_up_seed_table('../greenhouse.db')
+set_up_combo_tables('../greenhouse.db')
+populate_combo_tables('../greenhouse.db')
+create_indexes('../greenhouse.db')
+calculate_cultivation('../greenhouse.db')
+populate_combo_stats('../greenhouse.db')
