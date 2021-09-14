@@ -19,6 +19,15 @@ function selectBuyable(){
 }
 
 
+// Functionality for 'Deselect All' seeds button
+function deselectAll(){
+	let seeds = $("input[name='usable']")
+	for (seed in seeds){
+		seeds[seed].checked=false;
+	}
+}
+
+
 // Checking that there are seeds available to build a combo from
 function validateSeeds(){
 	let seeds = $("input[name='usable']")
