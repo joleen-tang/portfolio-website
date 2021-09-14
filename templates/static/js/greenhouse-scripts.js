@@ -1,6 +1,4 @@
-const BUYABLE = ['Mixed Herb Seeds', 'Western Fodlan Seeds', 'Root Vegetable Seeds', 'Vegetable Seeds', 
-	'Northern Fodlan Seeds', 'Southern Fodlan Seeds', 'Eastern Fodlan Seeds', 'Red Flower Seeds', 'White Flower Seeds',
-	'Blue Flower Seeds', 'Purple Flower Seeds', 'Yellow Flower Seeds', 'Green Flower Seeds', 'Pale-Blue Flower Seeds'];
+const BUYABLE = ['1', '2', '3', '4', '5', '7', '12', '15', '16', '17', '18', '19', '20', '21'];
 
 const TABLE_HEADER = "<tr><th>Score</th><th>Cultivation Level</th>"+
 	'<th class="seed-col">Seed 1</th><th class="qty-col">Qty</th>'+
@@ -13,7 +11,7 @@ const TABLE_HEADER = "<tr><th>Score</th><th>Cultivation Level</th>"+
 // Functionality for 'Select All Buyable Seeds' button
 function selectBuyable(){
 	for (seed in BUYABLE){
-		let node = $("input[value='"+BUYABLE[seed]+"']");
+		let node = $("input[value='"+BUYABLE[seed]+"'][name='usable']");
 		if (node.length){
 			node.prop("checked", true);
 		}
@@ -110,7 +108,7 @@ function modularAjax(url, type, formData){
 		success: function(data){
 			var results = $("#results table")[0];
 			if (data.length == 0){
-				$("#results p")[0].innerHTML="No combinations were found";
+				$("#results p")[0].innerHTML="No combinations were found; try a different set of filters";
 			}
 			else{
 				$("#results table tbody")[0].innerHTML += data;

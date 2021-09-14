@@ -13,40 +13,28 @@ def get_size_cultivation_level(prof_level):
     return size, max_cultivation_level
 
 
-def filter_combos(usable, max_size, priority, unwanted, cursor):
+def filter_combos(usable, cursor):
     # usable is a tuple of usable seed names
     # Returns all comboIDs that contain invalid seeds, are too large, have unwanted stats, or do not have priority stat
-    if usable is not None:
-        s_query = 'SELECT combo.comboID FROM (combo JOIN seed_combo USING(comboID)) JOIN seed USING(seedID) ' \
-                  'WHERE seed.name '
-        # Filter seed names
-        if len(usable) == 1:
-            s_query += f'!= "{usable[0]}" OR '
-        else:
-            s_query += 'NOT IN {} OR '.format(usable)
-        # Filter by priority stat
-        if len(priority) > 0:
-            s_query += '{} <= size / 2 OR '.format(priority)
-        # Filter out unwanted stats
-        if len(unwanted) > 0:
-            if len(unwanted) == 1:
-                s_query += '{} != 0 OR '.format(unwanted[0])
-            else:
-                for stat in unwanted:
-                    s_query += '{} != 0 OR '.format(stat)
-        # Filter by combo size
-        s_query += 'size > ? ORDER BY combo.comboID'
-        cursor.execute(s_query, (max_size,))
-        return cursor.fetchall()
+    s_query = 'SELECT comboID FROM seed_combo ' \
+              'WHERE seedID '
+    # Filter seed names
+    if len(usable) == 1:
+        s_query += f'!= "{usable[0]}" '
     else:
-        return ()
+        s_query += 'NOT IN {} '.format(usable)
+    s_query += 'ORDER BY comboID'
+    # cursor.execute(s_query)
+    # return cursor.fetchall()
+    return s_query
 
 
-def get_combo_info(max_cultivation_level, invalid_combo_ids, priority, secondary_priority, combo_limit, cursor):
+def get_combo_info(max_cultivation_level, subquery, priority, secondary_priority, combo_limit, unwanted,
+                   max_size, cursor):
     # Put rows of valid_combo_ids into one tuple
-    combo_ids = ()
-    for combo in invalid_combo_ids:
-        combo_ids += combo
+    # combo_ids = ()
+    # for combo in invalid_combo_ids:
+    #     combo_ids += combo
     s_query = 'SELECT combo.comboID, ' \
               f'CASE WHEN cultivation_level > ? THEN ' \
               f'zero_cultivation_score ELSE cultivation_score END AS score, ' \
@@ -54,29 +42,42 @@ def get_combo_info(max_cultivation_level, invalid_combo_ids, priority, secondary
               f'THEN 1 ELSE cultivation_level END AS "cultivation level", ' \
               f'seed.name, seed_combo.quantity ' \
               f'FROM (combo JOIN seed_combo USING(comboID)) JOIN seed USING(seedID) ' \
-              'WHERE combo.comboID NOT IN {} '.format(combo_ids)
-    s_query += 'ORDER BY zero_cultivation_score DESC, '
+              'WHERE combo.comboID NOT IN ('+subquery+') AND '
+    # Filter by priority stat
+    if len(priority) > 0:
+        s_query += '{} > combo.size / 2 AND '.format(priority)
+    # Filter out unwanted stats
+    if len(unwanted) > 0:
+        if len(unwanted) == 1:
+            s_query += 'combo.{} == 0 AND '.format(unwanted[0])
+        else:
+            for stat in unwanted:
+                s_query += 'combo.{} == 0 AND '.format(stat)
+    # Filter by combo size
+    s_query += 'combo.size <= ? '
+    s_query += 'ORDER BY score DESC, '
     if len(priority) > 0:
         s_query += f'{priority} DESC, '
     if len(secondary_priority) > 0:
         s_query += f'{secondary_priority} DESC, '
-    s_query += 'size, combo.comboID, seed_combo.quantity DESC, seed.name LIMIT ?'
+    s_query += '"cultivation level", combo.comboID, seed_combo.quantity DESC, seed.name LIMIT ?'
 
-    cursor.execute(s_query, (max_cultivation_level, max_cultivation_level, combo_limit*5))
+    cursor.execute(s_query, (max_cultivation_level, max_cultivation_level, max_size, combo_limit*5))
     return cursor.fetchall()
 
 
-def get_filtered_combo_ids(prof_level, priority, secondary_priority, unusable, unwanted_stats, combo_limit):
+def get_filtered_combo_ids(prof_level, priority, secondary_priority, usable, unwanted_stats, combo_limit):
     con = sqlite3.connect('greenhouse.db')
     cur = con.cursor()
     size_cult = get_size_cultivation_level(prof_level)
 
     # Filter out invalid combos
-    invalid_combo_ids = filter_combos(unusable, size_cult[0], priority, unwanted_stats, cur)
+    invalid_combo_ids = filter_combos(usable, cur)
 
     # Sort valid combos and get info to be displayed
     # Output tuples (comboID, score, cultivation level, seed name, seed quantity)
-    valid_combos = get_combo_info(size_cult[1], invalid_combo_ids, priority, secondary_priority, combo_limit, cur)
+    valid_combos = get_combo_info(size_cult[1], invalid_combo_ids, priority, secondary_priority, combo_limit,
+                                  unwanted_stats, size_cult[0], cur)
 
     # Format valid combos into HTML table rows
     combos_html = ''
@@ -105,7 +106,7 @@ def get_filtered_combo_ids(prof_level, priority, secondary_priority, unusable, u
         row_html = end_combo_row_html(combo_seed_count, row_html)
         combos_html += row_html
     else:
-        return "No valid combos"
+        return ""
     cur.close()
     con.close()
     return combos_html
@@ -160,10 +161,4 @@ def greenhouse_query():
     else:
         unwanted_stats = tuple(u)
     combo_limit = int(flask.request.form.get('combo_limit'))
-    # get_filtered_combo_ids(prof_level, priority, secondary_priority, usable, unwanted_stats, combo_limit)
-    # con = sqlite3.connect('greenhouse_lite.db')
-    # cur = con.cursor()
-    # cur.execute("SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%'")
-    # return str(cur.fetchall())
-    # str("prof_level: "+str(prof_level)+"\npriority: "+priority+"\nsecondary_priority"+secondary_priority+"\nusable"+str(usable)+"\nunwanted_stats"+str(unwanted_stats))
     return get_filtered_combo_ids(prof_level, priority, secondary_priority, usable, unwanted_stats, combo_limit)

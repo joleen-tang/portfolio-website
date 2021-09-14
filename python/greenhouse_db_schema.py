@@ -130,9 +130,11 @@ def create_indexes(db_file):
     con = sqlite3.connect(db_file)
     cur = con.cursor()
 
-    cur.execute("CREATE INDEX IF NOT EXISTS idx_combo ON combo (cultivation_score, size)")
+    cur.execute("CREATE INDEX IF NOT EXISTS idx_cult ON combo (cultivation_score)")
     cur.execute("CREATE INDEX IF NOT EXISTS idx_seed_combo ON seed_combo (quantity)")
     cur.execute("CREATE INDEX IF NOT EXISTS idx_seed ON seed (name)")
+    cur.execute("CREATE INDEX IF NOT EXISTS idx_seed_id ON seed_combo (seedID)")
+    cur.execute("CREATE INDEX IF NOT EXISTS idx_combo_id ON seed_combo (comboID)")
 
     con.commit()
     cur.close()
