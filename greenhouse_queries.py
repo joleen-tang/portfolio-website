@@ -136,12 +136,12 @@ app._static_folder = os.path.abspath("templates/static/")
 
 @app.route('/')
 def index():
-    return flask.render_template('fe3h_greenhouse.html')
+    return flask.render_template('greenhouse.html')
 
 
-# @app.route('/artworks')
-# def artworks():
-#     return flask.render_template('artworks.html')
+@app.route('/artworks')
+def artworks():
+    return flask.render_template('artworks.html')
 #
 #
 # @app.route('/greenhouse')

@@ -1,0 +1,263 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="author" content="Joleen Tang">
+	<meta content-type="text/html">
+	<title>FE3H Greenhouse Calculator</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="static/js/website-scripts.js"></script>
+	<script src="static/js/greenhouse-scripts.js"></script>
+	<script src="https://kit.fontawesome.com/b9820aecc1.js" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="static/css/art-webpage-styles.css">
+	<link rel="stylesheet" href="static/css/greenhouse-calc-styles.css">
+</head>
+<body>
+	<main>
+		<header id="top">
+			<h1>FE3H Greenhouse Calculator</h1>
+		</header>
+		<div class="page-wrap">
+			<section>
+				<form action="/greenhouse_query" method="POST" id="greenhouse-form">
+					<fieldset class="small-q">
+					<legend>Primary stat priority:</legend>
+					<label for="hp">
+						<input type="radio" name="priority" id="hp" value="hp"> HP
+					</label><br>
+					<label for="strength">
+						<input type="radio" name="priority" id="strength" value="strength"> Strength
+					</label><br>
+					<label for="magic">
+						<input type="radio" name="priority" id="magic" value="magic"> Magic
+					</label><br>
+					<label for="dexterity">
+						<input type="radio" name="priority" id="dexterity" value="dexterity"> Dexterity
+					</label><br>
+					<label for="speed">
+						<input type="radio" name="priority" id="speed" value="speed"> Speed
+					</label><br>
+					<label for="luck">
+						<input type="radio" name="priority" id="luck" value="luck"> Luck
+					</label><br>
+					<label for="defence">
+						<input type="radio" name="priority" id="defence" value="defence"> Defence
+					</label><br>
+					<label for="resistance">
+						<input type="radio" name="priority" id="resistance" value="resistance"> Resistance
+					</label><br>
+					<label for="charm">
+						<input type="radio" name="priority" id="charm" value="charm"> Charm
+					</label><br>
+					<label for="None">
+						<input type="radio" name="priority" id="None" value="" checked> None
+					</label><br>
+					</fieldset>
+
+					<fieldset class="small-q">
+					<legend>Secondary stat priority: </legend>
+					<label for="hp2">
+						<input type="radio" name="secondary_priority" id="hp2" value="hp"> HP
+					</label><br>
+					<label for="strength2">
+						<input type="radio" name="secondary_priority" id="strength2" value="strength"> Strength
+					</label><br>
+					<label for="magic2">
+						<input type="radio" name="secondary_priority" id="magic2" value="magic"> Magic
+					</label><br>
+					<label for="dexterity2">
+						<input type="radio" name="secondary_priority" id="dexterity2" value="dexterity"> Dexterity
+					</label><br>
+					<label for="speed2">
+						<input type="radio" name="secondary_priority" id="speed2" value="speed"> Speed
+					</label><br>
+					<label for="luck2">
+						<input type="radio" name="secondary_priority" id="luck2" value="luck"> Luck
+					</label><br>
+					<label for="defence2">
+						<input type="radio" name="secondary_priority" id="defence2" value="defence"> Defence
+					</label><br>
+					<label for="resistance2">
+						<input type="radio" name="secondary_priority" id="resistance2" value="resistance"> Resistance
+					</label><br>
+					<label for="charm2">
+						<input type="radio" name="secondary_priority" id="charm2" value="charm"> Charm
+					</label><br>
+					<label for="None2">
+						<input type="radio" name="secondary_priority" id="None2" value="" checked> None
+					</label><br>
+					</fieldset>
+
+					<fieldset class="small-q">
+					<legend>Unwanted Stats: </legend>
+					<label for="hp3">
+						<input type="checkbox" name="unwanted" id="hp3" value="hp"> HP
+					</label><br>
+					<label for="strength3">
+						<input type="checkbox" name="unwanted" id="strength3" value="strength"> Strength
+					</label><br>
+					<label for="magic3">
+						<input type="checkbox" name="unwanted" id="magic3" value="magic"> Magic
+					</label><br>
+					<label for="dexterity3">
+						<input type="checkbox" name="unwanted" id="dexterity3" value="dexterity"> Dexterity
+					</label><br>
+					<label for="speed3">
+						<input type="checkbox" name="unwanted" id="speed3" value="speed"> Speed
+					</label><br>
+					<label for="luck3">
+						<input type="checkbox" name="unwanted" id="luck3" value="luck"> Luck
+					</label><br>
+					<label for="defence3">
+						<input type="checkbox" name="unwanted" id="defence3" value="defence"> Defence
+					</label><br>
+					<label for="resistance3">
+						<input type="checkbox" name="unwanted" id="resistance3" value="resistance"> Resistance
+					</label><br>
+					<label for="charm3">
+						<input type="checkbox" name="unwanted" id="charm3" value="charm"> Charm
+					</label><br>
+					<span class="unwanted-error">Stat is selected as both priority and unwanted</span>
+					</fieldset>
+
+					<fieldset class="small-q">
+					<legend>Professor Level: </legend>
+					<label for="e">
+						<input type="radio" name="professor_level" id="e" value="1" checked> E
+					</label><br>
+					<label for="e+">
+						<input type="radio" name="professor_level" id="e+" value="2"> E+
+					</label><br>
+					<label for="d">
+						<input type="radio" name="professor_level" id="d" value="3"> D
+					</label><br>
+					<label for="d+">
+						<input type="radio" name="professor_level" id="d+" value="4"> D+
+					</label><br>
+					<label for="c">
+						<input type="radio" name="professor_level" id="c" value="5"> C
+					</label><br>
+					<label for="c+">
+						<input type="radio" name="professor_level" id="c+" value="6"> C+
+					</label><br>
+					<label for="b">
+						<input type="radio" name="professor_level" id="b" value="7"> B
+					</label><br>
+					<label for="b+">
+						<input type="radio" name="professor_level" id="b+" value="8"> B+
+					</label><br>
+					<label for="a">
+						<input type="radio" name="professor_level" id="a" value="9"> A
+					</label><br>
+					<label for="a+">
+						<input type="radio" name="professor_level" id="a+" value="10"> A+
+					</label><br>
+					</fieldset>
+
+					<fieldset class="checkbox big-q">
+					<legend>Available Seeds: </legend>
+					<label for="as">
+						<input type="checkbox" name="usable" id="as" value="11"> Albinean Seeds
+					</label>
+					<label for="ans">
+						<input type="checkbox" name="usable" id="ans" value="13"> Angelica Seeds
+					</label>
+					<label for="blfs">
+						<input type="checkbox" name="usable" id="blfs" value="17"> Blue Flower Seeds
+					</label>
+					<label for="bfs">
+						<input type="checkbox" name="usable" id="bfs" value="10"> Boa-Fruit Seeds
+					</label>
+					<label for="efs">
+						<input type="checkbox" name="usable" id="efs" value="12"> Eastern Fodlan Seeds
+					</label>
+					<label for="gfs">
+						<input type="checkbox" name="usable" id="gfs" value="20"> Green Flower Seeds
+					</label>
+					<label for="mfs">
+						<input type="checkbox" name="usable" id="mfs" value="14"> Mixed Fruit Seeds
+					</label>
+					<label for="mhs">
+						<input type="checkbox" name="usable" id="mhs" value="1"> Mixed Herb Seeds
+					</label>
+					<label for="ms">
+						<input type="checkbox" name="usable" id="ms" value="8"> Morfis Seeds
+					</label>
+					<label for="mps">
+						<input type="checkbox" name="usable" id="mps" value="6"> Morfis-Plum Seeds
+					</label>
+					<label for="ns">
+						<input type="checkbox" name="usable" id="ns" value="9"> Nordsalat Seeds
+					</label>
+					<label for="nfs">
+						<input type="checkbox" name="usable" id="nfs" value="5"> Northern Fodlan Seeds
+					</label>
+					<label for="pbfs">
+						<input type="checkbox" name="usable" id="pbfs" value="21"> Pale-Blue Flower Seeds
+					</label>
+					<label for="pfs">
+						<input type="checkbox" name="usable" id="pfs" value="18"> Purple Flower Seeds
+					</label>
+					<label for="rfs">
+						<input type="checkbox" name="usable" id="rfs" value="15"> Red Flower Seeds
+					</label>
+					<label for="rvs">
+						<input type="checkbox" name="usable" id="rvs" value="3"> Root Vegetable Seeds
+					</label>
+					<label for="sfs">
+						<input type="checkbox" name="usable" id="sfs" value="7"> Southern Fodlan Seeds
+					</label>
+					<label for="vs">
+						<input type="checkbox" name="usable" id="vs" value="4"> Vegetable Seeds
+					</label>
+					<label for="wfs">
+						<input type="checkbox" name="usable" id="wfs" value="2"> Western Fodlan Seeds
+					</label>
+					<label for="whfs">
+						<input type="checkbox" name="usable" id="whfs" value="16"> White Flower Seeds
+					</label>
+					<label for="yfs">
+						<input type="checkbox" name="usable" id="yfs" value="19"> Yellow Flower Seeds
+					</label>
+					<button type="button" onclick="selectBuyable()">Select All Buyable Seeds</button>
+					<button type="button" onclick="deselectAll()">Deselect All</button>
+					<span class="seed-error">Please select at least one seed.</span>
+					</fieldset>
+
+					<fieldset class="small-q">
+					<legend>Results displayed: </legend>
+					<label for="combo-limit">
+						<input type="number" id="combo-limit" name="combo_limit" min="1" max="50" value="20">
+					</label>
+					</fieldset>
+
+					<button type="submit" id="greenhouse-form-button">Go!</button>
+				</form>
+				<section id="results">
+					<p>Please wait a moment...</p>
+					<table>
+						<tr>
+							<th>Score</th>
+							<th>Cultivation Level</th>
+							<th class="seed-col">Seed 1</th>
+							<th class="qty-col">Qty</th>
+							<th class="seed-col">Seed 2</th>
+							<th class="qty-col">Qty</th>
+							<th class="seed-col">Seed 3</th>
+							<th class="qty-col">Qty</th>
+							<th class="seed-col">Seed 4</th>
+							<th class="qty-col">Qty</th>
+							<th class="seed-col">Seed 5</th>
+							<th class="qty-col">Qty</th>
+						</tr>
+					</table>
+				</section>
+			</section>
+		</div>
+	</main>
+	<footer>
+		<p>Email: joleen.tang888@gmail.com</p>
+		<p><a href="#top">Back to top</a></p>
+	</footer>
+</body>
+</html>
