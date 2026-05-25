@@ -5,6 +5,11 @@ import math
 
 
 def set_up_seed_table(db_file):
+    """Create and populate table to store seed data.
+
+    Keyword arguments:
+    db_file -- path to the database in which table will be created
+    """
     con = sqlite3.connect(db_file)
     cur = con.cursor()
 
@@ -31,6 +36,11 @@ def set_up_seed_table(db_file):
 
 
 def set_up_combo_tables(db_file):
+    """Create table to store seed combo data.
+
+    Keyword arguments:
+    db_file -- path to the database in which table will be created
+    """
     con = sqlite3.connect(db_file)
     cur = con.cursor()
 
@@ -67,6 +77,11 @@ def set_up_combo_tables(db_file):
 
 
 def populate_combo_tables(db_file):
+    """Populate table to store seed data.
+
+    Keyword arguments:
+    db_file -- path to the database in which table will be created
+    """
     con = sqlite3.connect(db_file)
     cur = con.cursor()
 
@@ -84,15 +99,25 @@ def populate_combo_tables(db_file):
     con.close()
 
 
-def get_max_combo_id(cur):
-    cur.execute('SELECT MAX(comboID) FROM combo')
-    current_combo_id = cur.fetchone()
-    return current_combo_id[0]
+def get_last_row_id(cursor):
+    """Return the last inserted table row.
+
+    Keyword arguments:
+    cursor -- sqlite database cursor object 
+    """
+    query = 'SELECT last_insert_rowid()'
+    cursor.execute(query)
+    return cursor.fetchone()
 
 
-def create_combos(seeds, seed_ids, cur):
-    # SeedIDs is a tuple of seed IDs,
-    # seeds is the tuple of tuples of all seeds pulled from seed table (seedID, name, rank, rarity, stat, buyable)
+def create_combos(seeds, seed_ids, cursor):
+    """Populate seed combination tables.
+
+    Keyword arguments:
+    seeds -- tuple of seed IDs
+    seed_ids -- seeds is the tuple of tuples of all seeds pulled from seed table (seedID, name, rank, rarity, stat, buyable)
+    cursor -- sqlite database cursor object 
+    """ 
     for combination in seed_ids:
         size = 0
         rank = 0
@@ -102,18 +127,23 @@ def create_combos(seeds, seed_ids, cur):
             rank += seeds[s_id][2]
             rarity += seeds[s_id][3]
         # Insert seed combination numbers
-        cur.execute('INSERT INTO combo(size, total_rank, total_rarity) '
+        cursor.execute('INSERT INTO combo(size, total_rank, total_rarity) '
                     f'VALUES({size}, {rank}, {rarity})')
         # Get current comboID
-        current_combo_id = get_max_combo_id(cur)
+        current_combo_id = get_last_row_id(cur)[0]
         for s_id in combination:
-            cur.execute(f'UPDATE seed_combo '
+            cursor.execute(f'UPDATE seed_combo '
                         f'SET quantity = quantity + 1 WHERE comboID={current_combo_id} AND seedID={s_id+1}')
-            cur.execute('INSERT INTO seed_combo(comboID, seedID, quantity)'
+            cursor.execute('INSERT INTO seed_combo(comboID, seedID, quantity)'
                         f'SELECT {current_combo_id}, {s_id+1}, 1 WHERE (SELECT changes() = 0)')
 
 
 def delete_tables(db_file):
+    """Delete tables containing seed data.
+
+    Keyword arguments:
+    db_file -- path to the database in which tables will be deleted
+    """
     con = sqlite3.connect(db_file)
     cur = con.cursor()
 
@@ -127,6 +157,11 @@ def delete_tables(db_file):
 
 
 def create_indexes(db_file):
+    """Create indexes on seed, combo, and seed_combo tables.
+
+    Keyword arguments:
+    db_file -- path to the database in which table will be created
+    """
     con = sqlite3.connect(db_file)
     cur = con.cursor()
 
@@ -142,6 +177,11 @@ def create_indexes(db_file):
 
 
 def calculate_cultivation(db_file):
+    """Populate cultivation scores for every seed combo.
+
+    Keyword arguments:
+    db_file -- path to the database in which table will be created
+    """
     con = sqlite3.connect(db_file)
     cur = con.cursor()
 
@@ -167,7 +207,13 @@ def calculate_cultivation(db_file):
 
 
 def get_score(combo, cultivation_level):
-    # combo is a tuple (comboID, total_rank, total_rarity)
+    """Calculate the score for a given combo and cultiavtion level.
+
+    Keyword arguments:
+    combo -- a tuple containing the combo ID, combo rank, and combo rarity
+    cultivation_level -- cultivation level
+    """
+    # Calculation taken from serenesforest.net
     a = (12 - (combo[1] % 12)) * 5
     b = math.floor((combo[2] / 5) * 4)
     c = (cultivation_level+4) * 2
@@ -175,10 +221,20 @@ def get_score(combo, cultivation_level):
 
 
 def get_effective_score(score):
+    """Calculate the effective score for a given score.
+
+    Keyword arguments:
+    score -- integer representing a raw combo score
+    """
     return score // 10
 
 
 def populate_combo_stats(db_file):
+    """Populate stat (hp, attack, etc.) values for each combo.
+
+    Keyword arguments:
+    db_file -- path to the database in which table will be created
+    """
     con = sqlite3.connect(db_file)
     cur = con.cursor()
 
